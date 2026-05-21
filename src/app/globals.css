@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #f9fafb;
+  --bg-card: #ffffff;
+  --border-card: rgba(148, 163, 184, 0.15);
+  --text-primary: #18181b;
+  --text-secondary: #52525b;
+  --text-muted: #a1a1aa;
+  --accent: #f59e0b;
+  --accent-muted: rgba(245, 158, 11, 0.1);
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+}
+
+.dark {
+  --bg-primary: #09090b;
+  --bg-card: #18181b;
+  --border-card: rgba(63, 63, 70, 0.5);
+  --text-primary: #fafafa;
+  --text-secondary: #a1a1aa;
+  --text-muted: #52525b;
+  --accent: #f59e0b;
+  --accent-muted: rgba(245, 158, 11, 0.1);
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--bg-primary);
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(245, 158, 11, 0.22);
+}
+
+.arcana-bento-grid {
+  grid-template-areas:
+    "sentinel"
+    "engram"
+    "parkinsons"
+    "occasio"
+    "equityflow"
+    "gridpulse";
+}
+
+@media (min-width: 1024px) {
+  .arcana-bento-grid {
+    grid-template-areas:
+      "sentinel sentinel engram"
+      "sentinel sentinel parkinsons"
+      "occasio equityflow gridpulse";
+  }
+}
+
+.arcana-code pre {
+  margin: 0;
+  padding: 1.5rem;
+  background: #09090b !important;
+}
+
+.arcana-code code {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.875rem;
+  line-height: 1.8;
+}
+
+.arcana-mermaid svg {
+  max-width: none;
+  width: 100%;
+  min-height: 20rem;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+@media print {
+  html,
+  body {
+    overflow: visible !important;
+    background: #ffffff !important;
+    color: #18181b !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  main,
+  article,
+  section {
+    display: block !important;
+  }
+
+  section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    padding-block: 2rem !important;
+  }
+
+  * {
+    box-shadow: none !important;
+  }
+}
