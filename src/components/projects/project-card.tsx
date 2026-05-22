@@ -30,14 +30,14 @@ export function ProjectCard({
     >
       <Link
         className={cn(
-          "group arcana-paper-panel grid h-full min-h-72 overflow-hidden rounded-[2rem] p-6 transition duration-300 hover:border-[rgba(196,107,40,0.48)]",
-          featured && "min-h-[24rem] md:min-h-[28rem] md:p-8",
+          "group arcana-paper-panel grid h-full min-h-56 overflow-hidden rounded-xl p-5 transition duration-300 hover:border-[rgba(217,119,6,0.45)]",
+          featured && "min-h-[19rem] md:min-h-[22rem] md:p-6",
         )}
         href={`/projects/${project.slug}`}
       >
         <div className="flex items-start justify-between gap-5 font-mono">
           <div className="flex items-center gap-3">
-            <span className="grid h-8 w-8 place-items-center rounded-md border border-[rgba(196,107,40,0.24)] bg-[rgba(196,107,40,0.1)] text-[0.66rem] font-semibold uppercase tracking-tight text-[#e7a56d]">
+            <span className="grid h-8 w-8 place-items-center rounded-md border border-[rgba(217,119,6,0.24)] bg-[rgba(217,119,6,0.09)] text-[0.66rem] font-semibold uppercase tracking-tight text-[#e6a15b]">
               {getInitials(project.name)}
             </span>
             <span className="text-[0.72rem] uppercase tracking-[0.16em] text-[var(--text-secondary)]">
@@ -49,14 +49,14 @@ export function ProjectCard({
           </span>
         </div>
 
-        <div className="mt-10">
+        <div className="mt-8">
           <Badge className="border-[var(--border-card)] bg-transparent text-[var(--text-muted)]">
             Dossier
           </Badge>
           <h3
             className={cn(
-              "font-editorial mt-5 text-3xl font-medium leading-[1.02] tracking-tight text-[var(--text-primary)]",
-              featured && "max-w-[13ch] text-5xl md:text-6xl",
+              "font-editorial mt-4 text-2xl font-semibold leading-[1.05] tracking-tight text-[var(--text-primary)]",
+              featured && "max-w-[13ch] text-4xl md:text-5xl",
             )}
           >
             {project.name}
@@ -64,19 +64,19 @@ export function ProjectCard({
           <p
             className={cn(
               "mt-4 max-w-[56ch] text-sm italic leading-6 text-[var(--text-secondary)]",
-              featured && "text-base leading-7",
+              featured && "text-sm leading-7",
             )}
           >
             {project.tagline}
           </p>
         </div>
 
-        <div className="mt-auto pt-10">
+        <div className="mt-auto pt-8">
           <div className="mb-5 h-px w-full bg-[var(--border-card)]" />
           <div className="flex flex-wrap gap-2">
             {visibleTech.map((tech) => (
               <span
-                className="rounded-md border border-[rgba(196,107,40,0.22)] bg-[rgba(196,107,40,0.09)] px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[#e7a56d]"
+                className="rounded-md border border-[rgba(217,119,6,0.22)] bg-[rgba(217,119,6,0.09)] px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-[#e6a15b]"
                 key={tech.name}
               >
                 {tech.name}

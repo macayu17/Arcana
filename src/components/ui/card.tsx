@@ -8,7 +8,7 @@ export const Card = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
     <div
       ref={ref}
       className={cn(
-        "arcana-paper-panel rounded-[2rem] p-7 text-[var(--text-primary)]",
+        "arcana-paper-panel p-5 text-[var(--text-primary)]",
         className,
       )}
       {...props}

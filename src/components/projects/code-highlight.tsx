@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
-import { useTheme } from "@/components/layout/theme-provider";
 
 export function CodeHighlight({
   title,
@@ -17,7 +16,6 @@ export function CodeHighlight({
   code: string;
   annotations?: string[];
 }) {
-  const { theme } = useTheme();
   const [html, setHtml] = useState("");
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const [inView, setInView] = useState(false);
@@ -52,7 +50,7 @@ export function CodeHighlight({
       const { codeToHtml } = await import("shiki");
       const highlighted = await codeToHtml(code, {
         lang: language,
-        theme: theme === "dark" ? "github-dark-default" : "github-light",
+        theme: "github-dark-default",
       });
 
       if (!cancelled) {
@@ -64,7 +62,7 @@ export function CodeHighlight({
     return () => {
       cancelled = true;
     };
-  }, [code, inView, language, theme]);
+  }, [code, inView, language]);
 
   return (
     <Card className="overflow-hidden p-0" ref={setContainer}>
@@ -87,14 +85,14 @@ export function CodeHighlight({
             dangerouslySetInnerHTML={{ __html: html }}
           />
         ) : (
-          <div className="h-64 animate-pulse bg-[rgba(247,240,228,0.035)]" />
+          <div className="h-64 animate-pulse bg-[rgba(235,231,223,0.035)]" />
         )}
       </div>
       {annotations?.length ? (
         <div className="grid gap-3 border-t border-[var(--border-card)] px-6 py-5">
           {annotations.map((annotation) => (
             <p
-              className="border-l border-[rgba(196,107,40,0.55)] pl-4 text-sm leading-6 text-[var(--text-secondary)]"
+              className="border-l border-[rgba(217,119,6,0.5)] pl-4 text-sm leading-6 text-[var(--text-secondary)]"
               key={annotation}
             >
               {annotation}

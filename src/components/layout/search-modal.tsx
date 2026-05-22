@@ -115,7 +115,7 @@ export function SearchModal({
                 {history.map((entry) => (
                   <button
                     key={entry}
-                    className="rounded-full border border-[var(--border-card)] px-3 py-1 text-xs font-semibold text-[var(--text-secondary)] transition hover:border-[rgba(196,107,40,0.45)] hover:text-[var(--text-primary)] active:scale-[0.98]"
+                    className="rounded-md border border-[var(--border-card)] px-2 py-1 text-xs font-semibold text-[var(--text-secondary)] transition hover:border-[rgba(217,119,6,0.4)] hover:text-[var(--text-primary)] active:scale-[0.98]"
                     type="button"
                     onClick={() => setQuery(entry)}
                   >
@@ -165,10 +165,10 @@ export function SearchModal({
                       <button
                         key={`${item.type}-${item.slug}-${item.title}`}
                         className={cn(
-                          "grid w-full grid-cols-[1fr_auto] items-center gap-4 rounded-2xl px-3 py-3 text-left transition active:scale-[0.99]",
+                          "grid w-full grid-cols-[1fr_auto] items-center gap-4 rounded-lg px-3 py-3 text-left transition active:scale-[0.99]",
                           absoluteIndex === activeIndex
-                            ? "bg-[rgba(196,107,40,0.12)]"
-                            : "hover:bg-[rgba(247,240,228,0.045)]",
+                            ? "bg-[rgba(217,119,6,0.11)]"
+                            : "hover:bg-[rgba(235,231,223,0.045)]",
                         )}
                         type="button"
                         onClick={() => navigateTo(item)}

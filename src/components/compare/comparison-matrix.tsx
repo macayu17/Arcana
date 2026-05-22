@@ -46,13 +46,13 @@ export function ComparisonMatrix() {
   }, [sortKey]);
 
   return (
-    <div className="mx-auto max-w-[1280px] px-4 py-16 md:px-6 md:py-24">
+    <div className="mx-auto max-w-[1280px] px-4 py-12 md:px-6 md:py-16">
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
         <div>
           <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
-            § IV - Comparison matrix
+            Comparison matrix
           </p>
-          <h1 className="font-editorial mt-4 text-5xl font-medium leading-[0.96] tracking-tight text-[var(--text-primary)] md:text-7xl">
+          <h1 className="font-editorial mt-3 text-4xl font-semibold leading-[1] tracking-tight text-[var(--text-primary)] md:text-5xl">
             Six systems, one scanning surface.
           </h1>
         </div>
@@ -71,7 +71,7 @@ export function ComparisonMatrix() {
         </div>
       </div>
 
-      <div className="arcana-paper-panel mt-12 overflow-x-auto rounded-[2rem]">
+      <div className="arcana-paper-panel mt-10 overflow-x-auto rounded-xl">
         <table className="min-w-[1100px] w-full border-collapse text-left">
           <thead>
             <tr className="border-b border-[var(--border-card)] font-mono text-[0.68rem] font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">

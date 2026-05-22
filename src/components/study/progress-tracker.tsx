@@ -18,13 +18,13 @@ export function ProgressTracker() {
 
   return (
     <div className="grid gap-6">
-      <div className="arcana-paper-panel rounded-[2rem] p-6">
+      <div className="arcana-paper-panel rounded-xl p-5">
         <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
           <div>
             <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">
               Overall progress
             </p>
-            <p className="font-editorial mt-3 text-4xl font-medium tracking-tight text-[var(--text-primary)]">
+            <p className="font-editorial mt-2 text-3xl font-semibold tracking-tight text-[var(--text-primary)]">
               {overall}%
             </p>
           </div>
@@ -50,13 +50,13 @@ export function ProgressTracker() {
 
           return (
             <Link
-              className="arcana-paper-panel grid gap-5 rounded-[2rem] p-5 transition hover:border-[rgba(196,107,40,0.45)] active:scale-[0.99] md:grid-cols-[auto_1fr_auto] md:items-center"
+              className="arcana-paper-panel grid gap-5 rounded-xl p-5 transition hover:border-[rgba(217,119,6,0.4)] active:scale-[0.99] md:grid-cols-[auto_1fr_auto] md:items-center"
               href={`/projects/${project.slug}`}
               key={project.slug}
             >
               <svg className="h-20 w-20 -rotate-90" viewBox="0 0 80 80">
                 <circle
-                  className="stroke-[rgba(247,240,228,0.08)]"
+                  className="stroke-[rgba(235,231,223,0.08)]"
                   cx="40"
                   cy="40"
                   fill="none"
@@ -76,7 +76,7 @@ export function ProgressTracker() {
                 />
               </svg>
               <div>
-                <p className="font-editorial text-2xl font-medium tracking-tight text-[var(--text-primary)]">
+                <p className="font-editorial text-xl font-semibold tracking-tight text-[var(--text-primary)]">
                   {project.name}
                 </p>
                 <p className="mt-1 text-sm text-[var(--text-muted)]">

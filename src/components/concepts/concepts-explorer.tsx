@@ -31,13 +31,13 @@ export function ConceptsExplorer() {
   }, [category, query]);
 
   return (
-    <div className="mx-auto max-w-[1280px] px-4 py-16 md:px-6 md:py-24">
-      <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
+    <div className="mx-auto max-w-[1280px] px-4 py-12 md:px-6 md:py-16">
+      <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
         <div>
           <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
-            § III - Concept glossary
+            Concept glossary
           </p>
-          <h1 className="font-editorial mt-4 text-5xl font-medium leading-[0.96] tracking-tight text-[var(--text-primary)] md:text-7xl">
+          <h1 className="font-editorial mt-3 text-4xl font-semibold leading-[1] tracking-tight text-[var(--text-primary)] md:text-5xl">
             Technical recall, cross-linked.
           </h1>
         </div>
@@ -50,7 +50,7 @@ export function ConceptsExplorer() {
 
       <div className="mt-12 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
         <input
-          className="h-14 rounded-full border border-[var(--border-card)] bg-[rgba(14,13,10,0.54)] px-5 text-sm font-medium text-[var(--text-primary)] outline-none transition placeholder:text-[var(--text-muted)] focus:border-[rgba(196,107,40,0.55)]"
+          className="h-10 rounded-lg border border-[var(--border-card)] bg-[rgba(13,12,10,0.54)] px-3 text-sm font-medium text-[var(--text-primary)] outline-none transition placeholder:text-[var(--text-muted)] focus:border-[rgba(217,119,6,0.5)]"
           placeholder="Filter by concept, definition, or explanation"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
@@ -90,7 +90,7 @@ export function ConceptsExplorer() {
                   <div className="mt-3 flex flex-wrap gap-2">
                     {concept.usedInProjects.map((projectSlug) => (
                       <Link
-                        className="rounded-full border border-[var(--border-card)] px-3 py-1 text-xs font-semibold text-[var(--text-secondary)] transition hover:border-[rgba(196,107,40,0.45)] hover:text-[var(--text-primary)]"
+                        className="rounded-md border border-[var(--border-card)] px-2 py-1 text-xs font-semibold text-[var(--text-secondary)] transition hover:border-[rgba(217,119,6,0.4)] hover:text-[var(--text-primary)]"
                         href={`/projects/${projectSlug}#concepts`}
                         key={projectSlug}
                       >

@@ -43,7 +43,7 @@ export function QuizQuestion({
   }, [remaining, timerActive]);
 
   return (
-    <div className="arcana-paper-panel rounded-[1.5rem] p-5">
+    <div className="arcana-paper-panel rounded-xl p-5">
       <div className="flex flex-wrap gap-2">
         <Badge className="normal-case tracking-normal">
           {formatCategory(category)}
@@ -86,7 +86,7 @@ export function QuizQuestion({
         >
           {timerActive ? "Stop timer" : "Start timer"}
         </Button>
-        <span className="rounded-full border border-[var(--border-card)] bg-[rgba(14,13,10,0.55)] px-3 py-2 text-sm font-semibold tabular-nums text-[var(--text-secondary)]">
+        <span className="rounded-md border border-[var(--border-card)] bg-[rgba(13,12,10,0.55)] px-3 py-1.5 text-sm font-semibold tabular-nums text-[var(--text-secondary)]">
           {formatTimer(remaining)}
         </span>
       </div>

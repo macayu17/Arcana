@@ -3,9 +3,10 @@ import { equityflow } from "@/data/projects/equityflow";
 import { gridpulse } from "@/data/projects/gridpulse";
 import { occasio } from "@/data/projects/occasio";
 import { parkinsons } from "@/data/projects/parkinsons";
+import { enrichProject } from "@/data/projects/deep-dive-additions";
 import { sentinel } from "@/data/projects/sentinel";
 
-export const projects = [
+const baseProjects = [
   sentinel,
   engram,
   parkinsons,
@@ -13,6 +14,8 @@ export const projects = [
   equityflow,
   gridpulse,
 ] as const;
+
+export const projects = baseProjects.map(enrichProject);
 
 export const projectBySlug = new Map(
   projects.map((project) => [project.slug, project]),

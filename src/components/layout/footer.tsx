@@ -4,11 +4,11 @@ import { concepts } from "@/data/concepts";
 
 export function Footer() {
   return (
-    <footer className="no-print border-t border-[var(--border-card)] py-12">
-      <div className="mx-auto grid max-w-[1280px] gap-8 px-4 md:grid-cols-[1fr_auto] md:px-6">
+    <footer className="no-print border-t border-[var(--border-card)] py-8">
+      <div className="mx-auto grid max-w-[1280px] gap-6 px-4 md:grid-cols-[1fr_auto] md:px-6">
         <div>
-          <p className="font-editorial text-2xl font-medium text-[var(--text-primary)]">
-            Arca<span className="italic text-[var(--accent)]">na</span>
+          <p className="text-base font-semibold text-[var(--text-primary)]">
+            Arcana
           </p>
           <p className="mt-2 max-w-[58ch] text-sm leading-6 text-[var(--text-muted)]">
             Ayush&apos;s interview study system for {projects.length} project

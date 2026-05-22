@@ -20,15 +20,15 @@ export function SearchPage() {
   const groups = useMemo(() => groupedSearchResults(query), [query]);
 
   return (
-    <div className="mx-auto max-w-[1100px] px-4 py-16 md:px-6 md:py-24">
+    <div className="mx-auto max-w-[1100px] px-4 py-12 md:px-6 md:py-16">
       <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
         Search
       </p>
-      <h1 className="font-editorial mt-4 text-5xl font-medium tracking-tight text-[var(--text-primary)] md:text-7xl">
+      <h1 className="font-editorial mt-3 text-4xl font-semibold tracking-tight text-[var(--text-primary)] md:text-5xl">
         Find any project detail.
       </h1>
       <input
-        className="mt-10 h-14 w-full rounded-full border border-[var(--border-card)] bg-[rgba(14,13,10,0.54)] px-5 text-sm font-medium text-[var(--text-primary)] outline-none transition placeholder:text-[var(--text-muted)] focus:border-[rgba(196,107,40,0.55)]"
+        className="mt-8 h-10 w-full rounded-lg border border-[var(--border-card)] bg-[rgba(13,12,10,0.54)] px-3 text-sm font-medium text-[var(--text-primary)] outline-none transition placeholder:text-[var(--text-muted)] focus:border-[rgba(217,119,6,0.5)]"
         placeholder="Search architecture, concepts, Q&A, or flashcards"
         value={query}
         onChange={(event) => setQuery(event.target.value)}
@@ -44,11 +44,11 @@ export function SearchPage() {
               <div className="grid gap-3">
                 {groups[group].map((item) => (
                   <Link
-                    className="arcana-paper-panel rounded-[1.5rem] p-5 transition hover:border-[rgba(196,107,40,0.45)] active:scale-[0.99]"
+                    className="arcana-paper-panel rounded-xl p-5 transition hover:border-[rgba(217,119,6,0.4)] active:scale-[0.99]"
                     href={item.slug}
                     key={`${item.type}-${item.slug}-${item.title}`}
                   >
-                    <p className="font-editorial text-2xl font-medium tracking-tight text-[var(--text-primary)]">
+                    <p className="font-editorial text-xl font-semibold tracking-tight text-[var(--text-primary)]">
                       {item.title}
                     </p>
                     <p className="mt-2 line-clamp-2 text-sm leading-6 text-[var(--text-muted)]">

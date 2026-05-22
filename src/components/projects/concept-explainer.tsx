@@ -36,7 +36,7 @@ export function ConceptExplainer({ project }: { project: Project }) {
                 {concept.relevance}
               </p>
             </div>
-            <div className="rounded-2xl border border-[var(--border-card)] bg-[rgba(14,13,10,0.45)] p-4">
+            <div className="rounded-lg border border-[var(--border-card)] bg-[rgba(13,12,10,0.45)] p-4">
               <p className="mb-3 font-mono text-[0.68rem] font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">
                 Confidence
               </p>

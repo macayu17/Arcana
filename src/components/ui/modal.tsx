@@ -29,7 +29,7 @@ export function Modal({
         >
           <motion.div
             className={cn(
-              "arcana-paper-panel mx-auto w-full max-w-3xl rounded-[2rem] p-3",
+              "arcana-paper-panel mx-auto w-full max-w-3xl rounded-xl p-3",
               className,
             )}
             initial={{ y: -18, scale: 0.98, opacity: 0 }}

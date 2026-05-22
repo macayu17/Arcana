@@ -24,7 +24,7 @@ export function Accordion({
   return (
     <div
       className={cn(
-        "arcana-paper-panel overflow-hidden rounded-[1.5rem]",
+        "arcana-paper-panel overflow-hidden rounded-xl",
         className,
       )}
     >

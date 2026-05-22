@@ -76,11 +76,11 @@ export default async function ProjectPage({
   );
 
   return (
-    <div className="mx-auto grid max-w-[1280px] gap-8 px-4 py-10 md:px-6 xl:grid-cols-[15rem_1fr]">
+    <div className="mx-auto grid max-w-[1280px] gap-6 px-4 py-8 md:px-6 lg:grid-cols-[13rem_1fr]">
       <SectionNav projectSlug={project.slug} sections={sections} />
 
-      <article>
-        <header className="arcana-paper-panel relative overflow-hidden rounded-[2rem] p-7 md:p-10">
+      <article className="min-w-0 lg:col-start-2">
+        <header className="relative overflow-hidden border-y border-[rgba(229,226,225,0.12)] bg-[linear-gradient(135deg,rgba(217,119,6,0.07),transparent_36%),linear-gradient(180deg,rgba(235,231,223,0.035),rgba(235,231,223,0))] px-1 py-6 md:px-2 md:py-8">
           <div className="arcana-watermark font-editorial pointer-events-none absolute -right-10 -top-20 text-[17rem] font-semibold leading-none">
             {project.name.slice(0, 1)}
           </div>
@@ -90,15 +90,15 @@ export default async function ProjectPage({
               {project.status}
             </Badge>
           </div>
-          <div className="relative mt-8 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="relative mt-6 grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
               <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
                 Project dossier
               </p>
-              <h1 className="font-editorial mt-4 max-w-5xl text-6xl font-medium leading-[0.9] tracking-[-0.05em] text-[var(--text-primary)] md:text-8xl">
+              <h1 className="font-editorial mt-3 max-w-5xl text-4xl font-semibold leading-[0.98] tracking-[-0.035em] text-[var(--text-primary)] md:text-5xl">
                 {project.name}
               </h1>
-              <p className="mt-6 max-w-[72ch] text-lg leading-8 text-[var(--text-secondary)]">
+              <p className="mt-4 max-w-[72ch] text-base leading-7 text-[var(--text-secondary)]">
                 {project.tagline}
               </p>
             </div>
@@ -128,7 +128,7 @@ export default async function ProjectPage({
             <p className="max-w-[76ch] text-lg leading-8 text-[var(--text-secondary)]">
               {project.description}
             </p>
-            <Card className="grid gap-4 rounded-[2rem]">
+            <Card className="grid gap-4 rounded-xl">
               <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--text-muted)]">
                 Target audience
               </p>
@@ -151,7 +151,7 @@ export default async function ProjectPage({
             <ArchitectureDiagram chart={project.architecture.diagram} title="Architecture diagram" />
             <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
               {project.architecture.layers.map((layer) => (
-                <Card className="rounded-[2rem]" key={layer.name}>
+                <Card className="rounded-xl" key={layer.name}>
                   <p className="font-editorial text-2xl font-medium tracking-tight text-[var(--text-primary)]">
                     {layer.name}
                   </p>
@@ -174,7 +174,7 @@ export default async function ProjectPage({
         <ProjectSection eyebrow="Implementation surface" id="tech-stack" title="Tech stack">
           <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
             {project.techStack.map((tech) => (
-              <Card className="rounded-[2rem]" key={`${tech.category}-${tech.name}`}>
+              <Card className="rounded-xl" key={`${tech.category}-${tech.name}`}>
                 <TechStackBadge category={tech.category} name={tech.name} />
                 <p className="mt-4 text-sm leading-7 text-[var(--text-secondary)]">
                   {tech.role}
@@ -192,10 +192,10 @@ export default async function ProjectPage({
             <div className="grid gap-4">
               {project.howItWorks.steps.map((step) => (
                 <div
-                  className="arcana-paper-panel grid gap-5 rounded-[1.75rem] p-5 md:grid-cols-[4rem_1fr]"
+                  className="arcana-paper-panel grid gap-5 rounded-xl p-5 md:grid-cols-[4rem_1fr]"
                   key={step.step}
                 >
-                  <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[var(--accent)] font-mono text-sm font-semibold tabular-nums text-[#130f0a]">
+                  <span className="grid h-10 w-10 place-items-center rounded-lg bg-[var(--accent)] font-mono text-sm font-semibold tabular-nums text-[#130f0a]">
                     {step.step}
                   </span>
                   <div>
@@ -206,7 +206,7 @@ export default async function ProjectPage({
                       {step.description}
                     </p>
                     {step.details ? (
-                      <p className="mt-3 border-l border-[rgba(196,107,40,0.5)] pl-4 text-sm leading-7 text-[var(--text-muted)]">
+                      <p className="mt-3 border-l border-[rgba(217,119,6,0.45)] pl-4 text-sm leading-7 text-[var(--text-muted)]">
                         {step.details}
                       </p>
                     ) : null}
@@ -249,12 +249,12 @@ export default async function ProjectPage({
                 Base URL: <span className="font-mono">{project.apiDesign.baseUrl}</span>
               </p>
               {project.apiDesign.endpoints.map((endpoint) => (
-                <Card className="rounded-[2rem]" key={`${endpoint.method}-${endpoint.path}`}>
+                <Card className="rounded-xl" key={`${endpoint.method}-${endpoint.path}`}>
                   <div className="flex flex-wrap items-center gap-3">
                     <Badge className="border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-300">
                       {endpoint.method}
                     </Badge>
-                    <code className="rounded-full border border-[var(--border-card)] bg-[rgba(14,13,10,0.6)] px-3 py-1 text-sm font-semibold text-[var(--text-secondary)]">
+                    <code className="rounded-md border border-[var(--border-card)] bg-[rgba(13,12,10,0.6)] px-2 py-1 text-sm font-semibold text-[var(--text-secondary)]">
                       {endpoint.path}
                     </code>
                   </div>
@@ -263,12 +263,12 @@ export default async function ProjectPage({
                   </p>
                   <div className="mt-5 grid gap-3 lg:grid-cols-[1fr_1fr]">
                     {endpoint.requestBody ? (
-                      <pre className="overflow-x-auto rounded-2xl bg-[#0d0c09] p-4 text-xs text-[var(--text-primary)]">
+                      <pre className="overflow-x-auto rounded-lg bg-[#0d0c09] p-4 text-xs text-[var(--text-primary)]">
                         {endpoint.requestBody}
                       </pre>
                     ) : null}
                     {endpoint.responseBody ? (
-                      <pre className="overflow-x-auto rounded-2xl bg-[#0d0c09] p-4 text-xs text-[var(--text-primary)]">
+                      <pre className="overflow-x-auto rounded-lg bg-[#0d0c09] p-4 text-xs text-[var(--text-primary)]">
                         {endpoint.responseBody}
                       </pre>
                     ) : null}
@@ -298,7 +298,7 @@ export default async function ProjectPage({
               ) : null}
               <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
                 {project.databaseDesign.tables.map((table) => (
-                  <Card className="rounded-[2rem]" key={table.name}>
+                  <Card className="rounded-xl" key={table.name}>
                     <p className="font-editorial text-2xl font-medium tracking-tight text-[var(--text-primary)]">
                       {table.name}
                     </p>
@@ -324,7 +324,7 @@ export default async function ProjectPage({
         <ProjectSection eyebrow="Architecture decisions" id="tradeoffs" title="Trade-offs">
           <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
             {project.tradeoffs.map((tradeoff) => (
-              <Card className="rounded-[2rem]" key={tradeoff.decision}>
+              <Card className="rounded-xl" key={tradeoff.decision}>
                 <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--text-muted)]">
                   {tradeoff.decision}
                 </p>
@@ -343,7 +343,7 @@ export default async function ProjectPage({
           <div className="grid gap-4">
             {project.challenges.map((challenge) => (
               <Card
-                className="grid gap-5 rounded-[2rem] lg:grid-cols-[0.95fr_1.05fr]"
+                className="grid gap-5 rounded-xl lg:grid-cols-[0.95fr_1.05fr]"
                 key={challenge.problem}
               >
                 <div>
@@ -375,7 +375,7 @@ export default async function ProjectPage({
 
         <ProjectSection eyebrow="Runbook" id="requirements" title="Requirements and future work">
           <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
-            <Card className="rounded-[2rem]">
+            <Card className="rounded-xl">
               <div className="mb-5 flex items-center gap-3">
                 <Terminal aria-hidden="true" className="text-[var(--accent)]" size={18} />
                 <p className="font-editorial text-2xl font-medium tracking-tight text-[var(--text-primary)]">
@@ -388,7 +388,7 @@ export default async function ProjectPage({
                 ))}
               </ul>
             </Card>
-            <Card className="rounded-[2rem]">
+            <Card className="rounded-xl">
               <div className="mb-5 flex items-center gap-3">
                 <Server aria-hidden="true" className="text-[var(--accent)]" size={18} />
                 <p className="font-editorial text-2xl font-medium tracking-tight text-[var(--text-primary)]">

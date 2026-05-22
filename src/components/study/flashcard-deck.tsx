@@ -78,16 +78,16 @@ export function FlashcardDeck({ project }: { project: Project }) {
 
   if (complete) {
     return (
-      <div className="mx-auto grid min-h-[70dvh] max-w-3xl place-items-center px-4 py-24">
-        <div className="arcana-paper-panel w-full rounded-[2rem] p-8 text-center">
+      <div className="mx-auto grid min-h-[70dvh] max-w-3xl place-items-center px-4 py-16">
+        <div className="arcana-paper-panel w-full rounded-xl p-6 text-center">
           <p className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.22em] text-[var(--text-muted)]">
             Deck complete
           </p>
-          <h1 className="font-editorial mt-4 text-5xl font-medium tracking-tight text-[var(--text-primary)]">
+          <h1 className="font-editorial mt-3 text-4xl font-semibold tracking-tight text-[var(--text-primary)]">
             {project.name} review summary
           </h1>
           <div className="mt-8 grid grid-cols-3 gap-3 text-left">
-            <div className="rounded-2xl bg-emerald-500/10 p-4">
+            <div className="rounded-lg bg-emerald-500/10 p-4">
               <p className="font-mono text-2xl font-semibold text-emerald-300">
                 {results.know}
               </p>
@@ -95,15 +95,15 @@ export function FlashcardDeck({ project }: { project: Project }) {
                 Know
               </p>
             </div>
-            <div className="rounded-2xl bg-[rgba(196,107,40,0.1)] p-4">
-              <p className="font-mono text-2xl font-semibold text-[#e7a56d]">
+            <div className="rounded-lg bg-[rgba(217,119,6,0.1)] p-4">
+              <p className="font-mono text-2xl font-semibold text-[#e6a15b]">
                 {results.kinda}
               </p>
               <p className="font-mono text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[var(--text-muted)]">
                 Kinda
               </p>
             </div>
-            <div className="rounded-2xl bg-rose-500/10 p-4">
+            <div className="rounded-lg bg-rose-500/10 p-4">
               <p className="font-mono text-2xl font-semibold text-rose-300">
                 {results.dontKnow}
               </p>
@@ -133,13 +133,13 @@ export function FlashcardDeck({ project }: { project: Project }) {
   }
 
   return (
-    <div className="mx-auto max-w-[1100px] px-4 py-16 md:px-6 md:py-24">
+    <div className="mx-auto max-w-[1100px] px-4 py-12 md:px-6 md:py-16">
       <div className="mb-8 grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
         <div>
           <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
-            § VI - Flashcards
+            Flashcards
           </p>
-          <h1 className="font-editorial mt-3 text-5xl font-medium tracking-tight text-[var(--text-primary)] md:text-7xl">
+          <h1 className="font-editorial mt-3 text-4xl font-semibold tracking-tight text-[var(--text-primary)] md:text-5xl">
             {project.name}
           </h1>
         </div>
@@ -166,7 +166,7 @@ export function FlashcardDeck({ project }: { project: Project }) {
 
       <AnimatePresence mode="wait">
         <motion.button
-          className="arcana-paper-panel grid min-h-[28rem] w-full place-items-center rounded-[2rem] p-8 text-center outline-none transition hover:border-[rgba(196,107,40,0.45)] active:scale-[0.99]"
+          className="arcana-paper-panel grid min-h-[22rem] w-full place-items-center rounded-xl p-6 text-center outline-none transition hover:border-[rgba(217,119,6,0.4)] active:scale-[0.99]"
           key={`${index}-${revealed}`}
           type="button"
           initial={{ rotateY: revealed ? -90 : 90, opacity: 0 }}
@@ -178,7 +178,7 @@ export function FlashcardDeck({ project }: { project: Project }) {
             <p className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.22em] text-[var(--text-muted)]">
               Card {index + 1} of {deck.length}
             </p>
-            <p className="font-editorial mt-8 max-w-3xl text-4xl font-medium tracking-tight text-[var(--text-primary)] md:text-6xl">
+            <p className="font-editorial mt-6 max-w-3xl text-3xl font-semibold tracking-tight text-[var(--text-primary)] md:text-4xl">
               {revealed ? card.back : card.front}
             </p>
             <p className="mt-8 text-sm font-semibold text-[var(--text-muted)]">

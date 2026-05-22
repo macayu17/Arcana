@@ -2,7 +2,6 @@
 
 import { useEffect, useId, useState } from "react";
 import { Card } from "@/components/ui/card";
-import { useTheme } from "@/components/layout/theme-provider";
 
 export function ArchitectureDiagram({
   chart,
@@ -11,7 +10,6 @@ export function ArchitectureDiagram({
   chart: string;
   title: string;
 }) {
-  const { theme } = useTheme();
   const id = useId().replace(/:/g, "");
   const [svg, setSvg] = useState("");
   const [error, setError] = useState("");
@@ -58,8 +56,52 @@ export function ArchitectureDiagram({
             lineColor: "#c46b28",
             secondaryColor: "#1b1812",
             tertiaryColor: "#0e0d0a",
+            actorBkg: "#1b1812",
+            actorBorder: "#514331",
+            actorTextColor: "#f7f0e4",
+            activationBkgColor: "#1b1812",
+            activationBorderColor: "#c46b28",
+            noteBkgColor: "#1b1812",
+            noteBorderColor: "#514331",
+            noteTextColor: "#f7f0e4",
+            sequenceNumberColor: "#130f0a",
+            signalColor: "#c8bba7",
+            signalTextColor: "#f7f0e4",
             fontFamily: "var(--font-geist-sans)",
           },
+          themeCSS: `
+            .node rect,
+            .node circle,
+            .node ellipse,
+            .node polygon,
+            .node path,
+            rect.actor {
+              fill: #1b1812 !important;
+              stroke: rgba(222, 204, 171, 0.34) !important;
+            }
+
+            .label text,
+            .nodeLabel,
+            text.actor,
+            .actor-box,
+            .messageText,
+            .loopText,
+            .labelText,
+            .noteText,
+            .sequenceDiagram text {
+              fill: #f7f0e4 !important;
+              color: #f7f0e4 !important;
+              stroke: none !important;
+            }
+
+            .actor-line,
+            .messageLine0,
+            .messageLine1,
+            .loopLine,
+            .note {
+              stroke: rgba(222, 204, 171, 0.5) !important;
+            }
+          `,
         });
 
         const result = await mermaid.render(`arcana-${id}`, chart);
@@ -82,7 +124,7 @@ export function ArchitectureDiagram({
     return () => {
       cancelled = true;
     };
-  }, [chart, id, inView, theme]);
+  }, [chart, id, inView]);
 
   return (
     <Card className="overflow-hidden p-0" ref={setContainer}>
@@ -91,9 +133,9 @@ export function ArchitectureDiagram({
           {title}
         </p>
       </div>
-      <div className="min-h-96 overflow-x-auto p-6">
+      <div className="min-h-96 overflow-x-auto bg-[#0d0c09]/65 p-6">
         {!inView ? (
-          <div className="grid min-h-80 place-items-center rounded-[1.5rem] border border-dashed border-[var(--border-card)] text-sm text-[var(--text-muted)]">
+          <div className="grid min-h-80 place-items-center rounded-lg border border-dashed border-[var(--border-card)] text-sm text-[var(--text-muted)]">
             Diagram loads when visible
           </div>
         ) : error ? (
@@ -106,7 +148,7 @@ export function ArchitectureDiagram({
             dangerouslySetInnerHTML={{ __html: svg }}
           />
         ) : (
-          <div className="grid min-h-80 place-items-center rounded-[1.5rem] border border-dashed border-[var(--border-card)] text-sm text-[var(--text-muted)]">
+          <div className="grid min-h-80 place-items-center rounded-lg border border-dashed border-[var(--border-card)] text-sm text-[var(--text-muted)]">
             Rendering diagram
           </div>
         )}

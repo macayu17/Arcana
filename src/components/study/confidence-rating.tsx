@@ -16,13 +16,13 @@ export function ConfidenceRating({
   onChange: (value: "low" | "medium" | "high") => void;
 }) {
   return (
-    <div className="inline-grid grid-cols-3 rounded-full border border-[var(--border-card)] bg-[rgba(14,13,10,0.55)] p-1">
+    <div className="inline-grid grid-cols-3 rounded-lg border border-[var(--border-card)] bg-[rgba(13,12,10,0.55)] p-1">
       {options.map((option) => (
         <button
           className={cn(
-            "rounded-full px-3 py-1 text-xs font-semibold text-[var(--text-muted)] transition active:scale-[0.98]",
+            "rounded-md px-3 py-1 text-xs font-semibold text-[var(--text-muted)] transition active:scale-[0.98]",
             value === option.value &&
-              "bg-[var(--accent)] text-[#130f0a] shadow-[0_8px_20px_-12px_rgba(196,107,40,0.9)]",
+              "bg-[var(--accent)] text-[#130f0a] shadow-[0_8px_20px_-12px_rgba(217,119,6,0.9)]",
           )}
           key={option.value}
           type="button"

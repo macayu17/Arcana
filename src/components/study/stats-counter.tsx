@@ -38,12 +38,12 @@ export function StatsCounter({
   return (
     <motion.div
       ref={ref}
-      className="arcana-paper-panel rounded-[1.75rem] p-5"
+      className="arcana-paper-panel rounded-xl p-5"
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
     >
-      <p className="font-editorial text-4xl font-medium tabular-nums tracking-tight text-[var(--text-primary)]">
+      <p className="font-editorial text-3xl font-semibold tabular-nums tracking-tight text-[var(--text-primary)]">
         {display}
       </p>
       <p className="mt-2 font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--text-muted)]">

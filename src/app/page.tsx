@@ -46,67 +46,75 @@ const ledgerColumns = [
 export default function Home() {
   return (
     <div className="overflow-hidden">
-      <section className="relative min-h-[100dvh] px-4 pt-16 md:px-6">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="arcana-watermark font-editorial absolute left-1/2 top-20 -translate-x-1/2 text-[31rem] font-semibold leading-none tracking-tighter">
-            A
+      <section className="relative px-4 pt-10 md:px-6">
+        <div className="relative mx-auto grid min-h-[58dvh] max-w-[1280px] items-center py-10 md:py-12">
+          <div className="max-w-3xl">
+            <div className="font-mono text-[0.66rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
+              The interview project catalog · Vol. 01
+            </div>
+            <h1 className="font-hero mt-5 max-w-3xl text-4xl font-medium leading-[0.98] tracking-[-0.035em] text-[var(--text-primary)] md:text-5xl lg:text-6xl">
+              Every major
+              <span className="block">
+                project <span className="italic text-[var(--accent)]">decoded.</span>
+              </span>
+              Interview-ready.
+            </h1>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--text-secondary)]">
+              Arcana turns six software projects into a browsable study archive
+              with architecture diagrams, concept explainers, code highlights,
+              interview Q&A, flashcards, notes, and progress tracking.
+            </p>
+            <div className="mt-6 inline-grid grid-cols-1 divide-y divide-[rgba(229,226,225,0.12)] border-y border-[rgba(229,226,225,0.14)] text-[0.72rem] uppercase tracking-[0.14em] text-[var(--text-secondary)] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+              <span className="px-4 py-2">
+                {projects.length} projects
+              </span>
+              <span className="px-4 py-2">
+                {concepts.length} concepts
+              </span>
+              <span className="px-4 py-2">
+                {techCount} technologies
+              </span>
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <ButtonLink
+                href="#project-ledger"
+                icon={<Layers aria-hidden="true" size={16} />}
+              >
+                Browse ledger
+              </ButtonLink>
+              <ButtonLink
+                href="/study"
+                variant="secondary"
+                icon={<BookOpen aria-hidden="true" size={16} />}
+              >
+                Start studying
+              </ButtonLink>
+            </div>
           </div>
-          <div className="absolute left-1/2 top-44 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full border border-[rgba(247,240,228,0.055)]" />
-          <div className="absolute left-[7vw] top-[42vh] h-64 w-64 rotate-45 border border-[rgba(196,107,40,0.12)]" />
-          <div className="absolute right-[8vw] top-[30vh] h-80 w-80 rotate-12 border border-[rgba(247,240,228,0.055)]" />
-        </div>
-
-        <div className="relative mx-auto flex min-h-[calc(100dvh-5rem)] max-w-[1280px] flex-col items-center justify-center py-24 text-center">
-          <div className="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-[var(--text-muted)]">
-            The interview project catalog · Vol. 01
-          </div>
-          <h1 className="font-editorial mt-7 max-w-5xl text-[3.5rem] font-medium leading-[0.88] tracking-[-0.055em] text-[var(--text-primary)] md:text-[6.8rem] lg:text-[8.4rem]">
-            Every major
-            <span className="block">
-              project <span className="italic text-[var(--accent)]">decoded.</span>
+          <div className="mt-10 grid max-w-3xl divide-y divide-[rgba(229,226,225,0.1)] border-y border-[rgba(229,226,225,0.12)] md:grid-cols-3 md:divide-x md:divide-y-0">
+            <span className="px-4 py-3 text-[0.72rem] uppercase tracking-[0.14em] text-[var(--text-muted)]">
+              Fast recall
             </span>
-            Interview-ready.
-          </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-[var(--text-secondary)]">
-            Arcana turns six software projects into a browsable study archive
-            with architecture diagrams, concept explainers, code highlights,
-            interview Q&A, flashcards, notes, and progress tracking.
-          </p>
-          <div className="mt-7 inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-[var(--border-card)] bg-[rgba(21,19,15,0.72)] px-5 py-2 font-mono text-[0.66rem] uppercase tracking-[0.22em] text-[var(--text-secondary)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
-            <span>{projects.length} projects</span>
-            <span className="text-[var(--text-muted)]">·</span>
-            <span>{concepts.length} concepts</span>
-            <span className="text-[var(--text-muted)]">·</span>
-            <span>{techCount} technologies</span>
-          </div>
-          <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <ButtonLink
-              href="#project-ledger"
-              icon={<Layers aria-hidden="true" size={17} />}
-            >
-              Browse ledger
-            </ButtonLink>
-            <ButtonLink
-              href="/study"
-              variant="secondary"
-              icon={<BookOpen aria-hidden="true" size={17} />}
-            >
-              Start studying
-            </ButtonLink>
+            <span className="px-4 py-3 text-[0.72rem] uppercase tracking-[0.14em] text-[var(--text-muted)]">
+              Architecture first
+            </span>
+            <span className="px-4 py-3 text-[0.72rem] uppercase tracking-[0.14em] text-[var(--text-muted)]">
+              Interview Q&A
+            </span>
           </div>
         </div>
       </section>
 
       <section
-        className="mx-auto max-w-[1280px] px-4 py-24 md:px-6 md:py-32"
+        className="mx-auto max-w-[1280px] px-4 py-16 md:px-6 md:py-20"
         id="project-ledger"
       >
         <div className="mb-8 flex items-end justify-between gap-4">
           <div>
             <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
-              § I - The Ledger
+              The ledger
             </p>
-            <h2 className="font-editorial mt-3 text-4xl font-medium tracking-tight text-[var(--text-primary)] md:text-5xl">
+            <h2 className="font-editorial mt-2 text-3xl font-semibold tracking-tight text-[var(--text-primary)] md:text-4xl">
               Browse the study catalog
             </h2>
           </div>
@@ -118,7 +126,7 @@ export default function Home() {
         <div className="grid gap-6 lg:grid-cols-3">
           {ledgerColumns.map((column) => (
             <div
-              className="arcana-paper-panel overflow-hidden rounded-[2rem]"
+              className="arcana-paper-panel overflow-hidden rounded-xl"
               key={column.title}
             >
               <div className="flex items-center justify-between border-b border-[var(--border-card)] px-5 py-4 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[var(--text-muted)]">
@@ -128,7 +136,7 @@ export default function Home() {
               <div className="divide-y divide-[var(--border-card)]">
                 {column.items.map(([label, count]) => (
                   <div
-                    className="grid grid-cols-[1fr_auto] gap-4 px-5 py-4 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-[var(--text-secondary)] transition hover:bg-[rgba(247,240,228,0.035)]"
+                    className="grid grid-cols-[1fr_auto] gap-4 px-5 py-4 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-[var(--text-secondary)] transition hover:bg-[rgba(235,231,223,0.035)]"
                     key={label}
                   >
                     <span>{formatCategory(label)}</span>
@@ -142,15 +150,15 @@ export default function Home() {
       </section>
 
       <section
-        className="mx-auto max-w-[1280px] px-4 py-24 md:px-6 md:py-32"
+        className="mx-auto max-w-[1280px] px-4 py-16 md:px-6 md:py-20"
         id="project-grid"
       >
         <div className="mb-8 flex items-end justify-between gap-4">
           <div>
             <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
-              § II - Project dossiers
+              Project dossiers
             </p>
-            <h2 className="font-editorial mt-3 text-4xl font-medium tracking-tight text-[var(--text-primary)] md:text-5xl">
+            <h2 className="font-editorial mt-2 text-3xl font-semibold tracking-tight text-[var(--text-primary)] md:text-4xl">
               Most useful systems to explain
             </h2>
           </div>

@@ -3,12 +3,12 @@ import type { TechCategory } from "@/lib/types";
 import { cn, formatCategory } from "@/lib/utils";
 
 const categoryStyles: Record<TechCategory, string> = {
-  frontend: "border-[rgba(196,107,40,0.32)] bg-[rgba(196,107,40,0.1)] text-[#e7a56d]",
-  backend: "border-[rgba(196,107,40,0.32)] bg-[rgba(196,107,40,0.1)] text-[#e7a56d]",
-  database: "border-[rgba(196,107,40,0.32)] bg-[rgba(196,107,40,0.1)] text-[#e7a56d]",
-  devops: "border-[rgba(196,107,40,0.32)] bg-[rgba(196,107,40,0.1)] text-[#e7a56d]",
-  ml: "border-[rgba(196,107,40,0.32)] bg-[rgba(196,107,40,0.1)] text-[#e7a56d]",
-  library: "border-[rgba(196,107,40,0.32)] bg-[rgba(196,107,40,0.1)] text-[#e7a56d]",
+  frontend: "border-[rgba(217,119,6,0.3)] bg-[rgba(217,119,6,0.09)] text-[#e6a15b]",
+  backend: "border-[rgba(217,119,6,0.3)] bg-[rgba(217,119,6,0.09)] text-[#e6a15b]",
+  database: "border-[rgba(217,119,6,0.3)] bg-[rgba(217,119,6,0.09)] text-[#e6a15b]",
+  devops: "border-[rgba(217,119,6,0.3)] bg-[rgba(217,119,6,0.09)] text-[#e6a15b]",
+  ml: "border-[rgba(217,119,6,0.3)] bg-[rgba(217,119,6,0.09)] text-[#e6a15b]",
+  library: "border-[rgba(217,119,6,0.3)] bg-[rgba(217,119,6,0.09)] text-[#e6a15b]",
 };
 
 export function TechStackBadge({

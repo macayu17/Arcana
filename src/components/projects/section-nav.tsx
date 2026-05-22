@@ -16,63 +16,101 @@ export function SectionNav({
   const { projectProgress, toggleSection } = useStudyProgress(projectSlug);
 
   useEffect(() => {
-    const observers = sections
-      .map((section) => document.getElementById(section.id))
-      .filter(Boolean) as HTMLElement[];
+    let frameId: number | null = null;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) {
-          setActive(visible.target.id);
+    const updateActiveSection = () => {
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+
+      frameId = window.requestAnimationFrame(() => {
+        const readingLine = 168;
+        let nextActive = sections[0]?.id ?? "";
+
+        for (const section of sections) {
+          const element = document.getElementById(section.id);
+
+          if (!element) {
+            continue;
+          }
+
+          if (element.getBoundingClientRect().top <= readingLine) {
+            nextActive = section.id;
+          } else {
+            break;
+          }
         }
-      },
-      { rootMargin: "-20% 0px -62% 0px", threshold: [0.1, 0.35, 0.6] },
-    );
 
-    observers.forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
+        setActive(nextActive);
+        frameId = null;
+      });
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
   }, [sections]);
 
   const reviewed = projectProgress?.sectionsReviewed ?? [];
   const progress =
     sections.length > 0 ? Math.round((reviewed.length / sections.length) * 100) : 0;
+  const activeLabel =
+    sections.find((section) => section.id === active)?.label ?? sections[0]?.label;
 
   return (
-    <aside className="no-print arcana-paper-panel sticky top-28 hidden self-start rounded-[2rem] p-3 backdrop-blur-xl xl:block">
-      <div className="px-3 py-3">
-        <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--text-muted)]">
-          Study map
+    <aside className="no-print fixed left-[max(1rem,calc((100vw-1280px)/2+1.5rem))] top-[5rem] z-20 hidden max-h-[calc(100dvh-5.25rem)] w-52 self-start overflow-hidden border-y border-[rgba(229,226,225,0.12)] bg-[rgba(13,12,10,0.58)] p-2 backdrop-blur-xl lg:block">
+      <div className="border-b border-[rgba(229,226,225,0.1)] px-2.5 pb-3 pt-2">
+        <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-[var(--text-muted)]">
+          Project map
         </p>
-        <div className="mt-3 h-px overflow-hidden rounded-full bg-[var(--border-card)]">
+        <p className="mt-2 truncate text-sm font-semibold tracking-tight text-[var(--text-primary)]">
+          {activeLabel}
+        </p>
+        <div className="mt-3 h-px overflow-hidden bg-[rgba(229,226,225,0.12)]">
           <div
-            className="h-full rounded-full bg-[var(--accent)] transition-all"
+            className="h-full bg-[var(--accent)] transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <p className="mt-3 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-[var(--text-muted)]">
+        <p className="mt-3 text-[0.68rem] uppercase tracking-[0.14em] text-[var(--text-muted)]">
           {progress}% reviewed
         </p>
       </div>
-      <div className="grid gap-1">
+      <div className="grid max-h-[calc(100dvh-12rem)] gap-0.5 overflow-y-auto py-2 pr-1">
         {sections.map((section) => {
           const checked = reviewed.includes(section.id);
+          const isActive = active === section.id;
 
           return (
             <div
               className={cn(
-                "grid grid-cols-[auto_1fr] items-center gap-2 rounded-2xl px-2 py-1.5",
-                active === section.id &&
-                  "bg-[rgba(196,107,40,0.12)] text-[var(--text-primary)]",
+                "group relative grid grid-cols-[auto_1fr] items-center gap-2 px-2 py-1 transition",
+                isActive &&
+                  "bg-[rgba(217,119,6,0.08)] text-[var(--text-primary)]",
               )}
               key={section.id}
             >
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "absolute left-0 top-1/2 h-6 w-px -translate-y-1/2 rounded-full bg-transparent transition",
+                  isActive && "bg-[var(--accent)]",
+                )}
+              />
               <button
                 aria-label={`Mark ${section.label} reviewed`}
+                aria-pressed={checked}
                 className={cn(
-                  "grid h-5 w-5 place-items-center rounded-md border text-[0.65rem] transition active:scale-[0.9]",
+                  "grid h-4 w-4 place-items-center rounded-sm border text-[0.65rem] transition active:scale-[0.9]",
                   checked
                     ? "border-[var(--accent)] bg-[var(--accent)] text-[#130f0a]"
                     : "border-[var(--border-card)] text-transparent",
@@ -80,11 +118,16 @@ export function SectionNav({
                 type="button"
                 onClick={() => toggleSection(section.id)}
               >
-                <Check aria-hidden="true" size={12} strokeWidth={2.2} />
+                <Check aria-hidden="true" size={10} strokeWidth={2.2} />
               </button>
               <a
-                className="truncate rounded-xl px-2 py-2 text-sm font-semibold text-[var(--text-muted)] transition hover:text-[var(--text-primary)]"
+                aria-current={isActive ? "true" : undefined}
+                className={cn(
+                  "truncate px-2 py-1.5 text-sm font-semibold text-[var(--text-muted)] transition hover:text-[var(--text-primary)]",
+                  isActive && "text-[var(--text-primary)]",
+                )}
                 href={`#${section.id}`}
+                onClick={() => setActive(section.id)}
               >
                 {section.label}
               </a>
