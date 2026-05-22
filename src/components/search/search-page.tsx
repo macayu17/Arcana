@@ -21,14 +21,14 @@ export function SearchPage() {
 
   return (
     <div className="mx-auto max-w-[1100px] px-4 py-16 md:px-6 md:py-24">
-      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-600 dark:text-amber-300">
+      <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
         Search
       </p>
-      <h1 className="mt-4 text-5xl font-semibold tracking-tighter text-zinc-950 dark:text-zinc-50 md:text-7xl">
+      <h1 className="font-editorial mt-4 text-5xl font-medium tracking-tight text-[var(--text-primary)] md:text-7xl">
         Find any project detail.
       </h1>
       <input
-        className="mt-10 h-14 w-full rounded-full border border-zinc-200 bg-white px-5 text-sm font-medium text-zinc-950 outline-none transition focus:border-amber-500/50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50"
+        className="mt-10 h-14 w-full rounded-full border border-[var(--border-card)] bg-[rgba(14,13,10,0.54)] px-5 text-sm font-medium text-[var(--text-primary)] outline-none transition placeholder:text-[var(--text-muted)] focus:border-[rgba(196,107,40,0.55)]"
         placeholder="Search architecture, concepts, Q&A, or flashcards"
         value={query}
         onChange={(event) => setQuery(event.target.value)}
@@ -38,20 +38,20 @@ export function SearchPage() {
         {(["project", "concept", "question", "flashcard"] as const).map((group) =>
           groups[group].length ? (
             <section key={group}>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400">
+              <p className="mb-3 font-mono text-[0.68rem] font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">
                 {labels[group]}
               </p>
               <div className="grid gap-3">
                 {groups[group].map((item) => (
                   <Link
-                    className="rounded-[1.5rem] border border-zinc-200 bg-white p-5 transition hover:border-amber-500/30 active:scale-[0.99] dark:border-zinc-800 dark:bg-zinc-950"
+                    className="arcana-paper-panel rounded-[1.5rem] p-5 transition hover:border-[rgba(196,107,40,0.45)] active:scale-[0.99]"
                     href={item.slug}
                     key={`${item.type}-${item.slug}-${item.title}`}
                   >
-                    <p className="text-lg font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+                    <p className="font-editorial text-2xl font-medium tracking-tight text-[var(--text-primary)]">
                       {item.title}
                     </p>
-                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-zinc-500 dark:text-zinc-400">
+                    <p className="mt-2 line-clamp-2 text-sm leading-6 text-[var(--text-muted)]">
                       {item.content}
                     </p>
                     <div className="mt-4 flex flex-wrap gap-2">

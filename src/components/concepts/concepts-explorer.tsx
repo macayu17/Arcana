@@ -31,17 +31,17 @@ export function ConceptsExplorer() {
   }, [category, query]);
 
   return (
-    <div className="mx-auto max-w-[1400px] px-4 py-16 md:px-6 md:py-24">
+    <div className="mx-auto max-w-[1280px] px-4 py-16 md:px-6 md:py-24">
       <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-600 dark:text-amber-300">
-            Concept glossary
+          <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
+            § III - Concept glossary
           </p>
-          <h1 className="mt-4 text-5xl font-semibold tracking-tighter text-zinc-950 dark:text-zinc-50 md:text-7xl">
+          <h1 className="font-editorial mt-4 text-5xl font-medium leading-[0.96] tracking-tight text-[var(--text-primary)] md:text-7xl">
             Technical recall, cross-linked.
           </h1>
         </div>
-        <p className="max-w-[68ch] text-base leading-8 text-zinc-600 dark:text-zinc-300">
+        <p className="max-w-[68ch] text-base leading-8 text-[var(--text-secondary)]">
           Every concept is derived from the six project records and links back to
           the projects where it matters. Use it to rehearse definitions, relevance,
           and likely follow-up questions.
@@ -50,7 +50,7 @@ export function ConceptsExplorer() {
 
       <div className="mt-12 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center">
         <input
-          className="h-14 rounded-full border border-zinc-200 bg-white px-5 text-sm font-medium text-zinc-950 outline-none transition focus:border-amber-500/50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50"
+          className="h-14 rounded-full border border-[var(--border-card)] bg-[rgba(14,13,10,0.54)] px-5 text-sm font-medium text-[var(--text-primary)] outline-none transition placeholder:text-[var(--text-muted)] focus:border-[rgba(196,107,40,0.55)]"
           placeholder="Filter by concept, definition, or explanation"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
@@ -84,13 +84,13 @@ export function ConceptsExplorer() {
               <div className="space-y-5">
                 <p>{concept.explanation}</p>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400">
+                  <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">
                     Used in
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {concept.usedInProjects.map((projectSlug) => (
                       <Link
-                        className="rounded-full border border-zinc-200 px-3 py-1 text-xs font-semibold text-zinc-600 transition hover:border-amber-500/40 hover:text-zinc-950 dark:border-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-50"
+                        className="rounded-full border border-[var(--border-card)] px-3 py-1 text-xs font-semibold text-[var(--text-secondary)] transition hover:border-[rgba(196,107,40,0.45)] hover:text-[var(--text-primary)]"
                         href={`/projects/${projectSlug}#concepts`}
                         key={projectSlug}
                       >
@@ -100,7 +100,7 @@ export function ConceptsExplorer() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400">
+                  <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">
                     Related concepts
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">

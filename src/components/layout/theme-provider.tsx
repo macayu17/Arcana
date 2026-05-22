@@ -29,24 +29,18 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
-      const stored = window.localStorage.getItem(STORAGE_KEYS.THEME) as
-        | ThemeMode
-        | null;
-      const nextTheme =
-        stored ??
-        (window.matchMedia("(prefers-color-scheme: dark)").matches
-          ? "dark"
-          : "light");
-      setThemeState(nextTheme);
-      applyTheme(nextTheme);
+      window.localStorage.setItem(STORAGE_KEYS.THEME, "dark");
+      setThemeState("dark");
+      applyTheme("dark");
     });
     return () => window.cancelAnimationFrame(frame);
   }, []);
 
   const setTheme = useCallback((nextTheme: ThemeMode) => {
-    setThemeState(nextTheme);
-    window.localStorage.setItem(STORAGE_KEYS.THEME, nextTheme);
-    applyTheme(nextTheme);
+    const lockedTheme = nextTheme === "light" ? "dark" : nextTheme;
+    setThemeState(lockedTheme);
+    window.localStorage.setItem(STORAGE_KEYS.THEME, lockedTheme);
+    applyTheme(lockedTheme);
   }, []);
 
   const toggleTheme = useCallback(() => {

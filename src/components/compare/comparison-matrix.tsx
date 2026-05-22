@@ -46,13 +46,13 @@ export function ComparisonMatrix() {
   }, [sortKey]);
 
   return (
-    <div className="mx-auto max-w-[1400px] px-4 py-16 md:px-6 md:py-24">
+    <div className="mx-auto max-w-[1280px] px-4 py-16 md:px-6 md:py-24">
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-600 dark:text-amber-300">
-            Comparison matrix
+          <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
+            § IV - Comparison matrix
           </p>
-          <h1 className="mt-4 text-5xl font-semibold tracking-tighter text-zinc-950 dark:text-zinc-50 md:text-7xl">
+          <h1 className="font-editorial mt-4 text-5xl font-medium leading-[0.96] tracking-tight text-[var(--text-primary)] md:text-7xl">
             Six systems, one scanning surface.
           </h1>
         </div>
@@ -71,11 +71,11 @@ export function ComparisonMatrix() {
         </div>
       </div>
 
-      <div className="mt-12 overflow-x-auto rounded-[2rem] border border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+      <div className="arcana-paper-panel mt-12 overflow-x-auto rounded-[2rem]">
         <table className="min-w-[1100px] w-full border-collapse text-left">
           <thead>
-            <tr className="border-b border-zinc-200 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400 dark:border-zinc-800">
-              <th className="sticky left-0 bg-white px-5 py-4 dark:bg-zinc-950">
+            <tr className="border-b border-[var(--border-card)] font-mono text-[0.68rem] font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">
+              <th className="sticky left-0 bg-[var(--bg-card)] px-5 py-4">
                 Project
               </th>
               <th className="px-5 py-4">Domain</th>
@@ -89,30 +89,30 @@ export function ComparisonMatrix() {
           <tbody>
             {rows.map((project) => (
               <tr
-                className="border-b border-zinc-100 align-top last:border-0 dark:border-zinc-900"
+                className="border-b border-[var(--border-card)] align-top last:border-0"
                 key={project.slug}
               >
-                <td className="sticky left-0 bg-white px-5 py-5 dark:bg-zinc-950">
+                <td className="sticky left-0 bg-[var(--bg-card)] px-5 py-5">
                   <Link
-                    className="font-semibold text-zinc-950 hover:text-amber-600 dark:text-zinc-50"
+                    className="font-semibold text-[var(--text-primary)] hover:text-[var(--accent)]"
                     href={`/projects/${project.slug}`}
                   >
                     {project.name}
                   </Link>
-                  <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+                  <p className="mt-1 text-xs text-[var(--text-muted)]">
                     {project.status}
                   </p>
                 </td>
                 <td className="px-5 py-5">
-                  <Badge className={project.domainColor}>{project.domain}</Badge>
+                  <Badge>{project.domain}</Badge>
                 </td>
-                <td className="px-5 py-5 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                <td className="px-5 py-5 text-sm leading-6 text-[var(--text-secondary)]">
                   {frontend(project.slug)}
                 </td>
-                <td className="px-5 py-5 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                <td className="px-5 py-5 text-sm leading-6 text-[var(--text-secondary)]">
                   {backend(project.slug)}
                 </td>
-                <td className="px-5 py-5 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                <td className="px-5 py-5 text-sm leading-6 text-[var(--text-secondary)]">
                   {database(project.slug)}
                 </td>
                 <td className="px-5 py-5">
@@ -124,7 +124,7 @@ export function ComparisonMatrix() {
                     ))}
                   </div>
                 </td>
-                <td className="px-5 py-5 text-sm leading-6 text-zinc-600 dark:text-zinc-300">
+                <td className="px-5 py-5 text-sm leading-6 text-[var(--text-secondary)]">
                   {project.architecture.layers.map((layer) => layer.name).join(" -> ")}
                 </td>
               </tr>

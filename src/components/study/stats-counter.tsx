@@ -38,15 +38,15 @@ export function StatsCounter({
   return (
     <motion.div
       ref={ref}
-      className="rounded-[2rem] border border-zinc-200/80 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900"
+      className="arcana-paper-panel rounded-[1.75rem] p-5"
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
     >
-      <p className="text-4xl font-semibold tabular-nums tracking-tighter text-zinc-950 dark:text-zinc-50">
+      <p className="font-editorial text-4xl font-medium tabular-nums tracking-tight text-[var(--text-primary)]">
         {display}
       </p>
-      <p className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-zinc-400">
+      <p className="mt-2 font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--text-muted)]">
         {label}
       </p>
     </motion.div>

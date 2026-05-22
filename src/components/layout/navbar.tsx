@@ -1,54 +1,66 @@
 "use client";
 
-import { BookOpen, Command, Layers, Library, PanelTop, Search } from "lucide-react";
+import { Command, Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/projects", label: "Projects", icon: Layers },
-  { href: "/concepts", label: "Concepts", icon: Library },
-  { href: "/compare", label: "Compare", icon: PanelTop },
-  { href: "/study", label: "Study", icon: BookOpen },
+  { href: "/projects", label: "Browse" },
+  { href: "/concepts", label: "Concepts" },
+  { href: "/compare", label: "Matrix" },
+  { href: "/study", label: "Study" },
 ];
 
 export function Navbar({ onSearch }: { onSearch: () => void }) {
   const pathname = usePathname();
 
   return (
-    <header className="no-print sticky top-0 z-30 border-b border-zinc-200/60 bg-[var(--bg-primary)]/78 backdrop-blur-xl dark:border-zinc-800/70">
-      <nav className="mx-auto grid max-w-[1400px] grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-3 md:px-6">
+    <header className="no-print sticky top-0 z-30 px-3 pt-3 md:px-4 md:pt-4">
+      <nav className="mx-auto grid max-w-[1280px] grid-cols-[auto_1fr_auto] items-center gap-3 rounded-full border border-[var(--border-card)] bg-[rgba(21,19,15,0.78)] px-4 py-2 shadow-[0_24px_80px_-48px_rgba(0,0,0,0.95)] backdrop-blur-xl md:grid-cols-[auto_minmax(16rem,36rem)_auto] md:px-5">
         <Link
-          className="group inline-grid grid-cols-[2.5rem_auto] items-center gap-3"
+          className="group inline-grid shrink-0 grid-cols-[2.25rem_auto] items-center gap-3"
           href="/"
         >
-          <span className="grid h-10 w-10 place-items-center rounded-2xl border border-amber-500/30 bg-amber-500/12 text-sm font-bold text-amber-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] dark:text-amber-300">
+          <span className="grid h-9 w-9 place-items-center rounded-full border border-[rgba(196,107,40,0.42)] bg-[rgba(196,107,40,0.15)] font-mono text-[0.72rem] font-semibold text-[#e7a56d] shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
             AR
           </span>
-          <span className="hidden text-sm font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 sm:block">
-            Arcana
+          <span className="hidden text-lg font-semibold tracking-tight text-[var(--text-primary)] sm:block">
+            Arca<span className="font-editorial italic text-[var(--accent)]">na</span>
           </span>
         </Link>
 
-        <div className="hidden items-center justify-start gap-1 md:flex">
+        <Button
+          className="!hidden min-h-10 w-full grid-cols-[auto_1fr_auto] gap-3 border-[var(--border-card)] bg-[rgba(14,13,10,0.54)] px-4 text-[var(--text-muted)] hover:border-[rgba(196,107,40,0.38)] md:!inline-grid"
+          type="button"
+          variant="secondary"
+          onClick={onSearch}
+        >
+          <Search aria-hidden="true" size={16} strokeWidth={1.8} />
+          <span className="truncate text-left text-sm font-medium">
+            Search projects, concepts, questions...
+          </span>
+          <span className="inline-flex items-center gap-1 rounded-full border border-[var(--border-card)] px-2 py-1 font-mono text-[0.62rem] text-[var(--text-muted)]">
+            <Command aria-hidden="true" size={11} /> K
+          </span>
+        </Button>
+
+        <div className="hidden items-center justify-end gap-1 md:flex">
           {links.map((link) => {
-            const Icon = link.icon;
             const active =
               pathname === link.href || pathname.startsWith(`${link.href}/`);
 
             return (
               <Link
                 className={cn(
-                  "inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm font-semibold text-zinc-500 transition hover:bg-zinc-950/5 hover:text-zinc-950 active:scale-[0.98] dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-zinc-50",
+                  "rounded-lg px-3 py-2 font-mono text-[0.68rem] uppercase tracking-[0.2em] text-[var(--text-muted)] transition hover:text-[var(--text-primary)] active:scale-[0.98]",
                   active &&
-                    "bg-amber-500/12 text-zinc-950 dark:text-zinc-50",
+                    "bg-[rgba(196,107,40,0.12)] text-[#e7a56d]",
                 )}
                 href={link.href}
                 key={link.href}
               >
-                <Icon aria-hidden="true" size={16} strokeWidth={1.8} />
                 {link.label}
               </Link>
             );
@@ -57,27 +69,14 @@ export function Navbar({ onSearch }: { onSearch: () => void }) {
 
         <div className="flex items-center justify-end gap-2">
           <Button
-            className="!hidden min-h-11 grid-cols-[auto_1fr_auto] gap-3 px-4 text-zinc-500 sm:!inline-grid"
-            type="button"
-            variant="secondary"
-            onClick={onSearch}
-          >
-            <Search aria-hidden="true" size={16} />
-            <span className="text-sm font-semibold">Search</span>
-            <span className="inline-flex items-center gap-1 rounded-full bg-zinc-950/5 px-2 py-1 text-[0.65rem] font-bold text-zinc-500 dark:bg-white/10">
-              <Command aria-hidden="true" size={11} /> K
-            </span>
-          </Button>
-          <Button
             aria-label="Search"
-            className="!inline-flex h-11 min-h-11 w-11 px-0 sm:!hidden"
+            className="!inline-flex h-10 min-h-10 w-10 px-0 md:!hidden"
             type="button"
             variant="secondary"
             onClick={onSearch}
           >
             <Search aria-hidden="true" size={17} />
           </Button>
-          <ThemeToggle />
         </div>
       </nav>
     </header>

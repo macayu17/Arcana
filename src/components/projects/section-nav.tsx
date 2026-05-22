@@ -41,18 +41,18 @@ export function SectionNav({
     sections.length > 0 ? Math.round((reviewed.length / sections.length) * 100) : 0;
 
   return (
-    <aside className="no-print sticky top-24 hidden self-start rounded-[2rem] border border-zinc-200/80 bg-white/75 p-3 backdrop-blur-xl dark:border-zinc-800 dark:bg-zinc-950/75 xl:block">
+    <aside className="no-print arcana-paper-panel sticky top-28 hidden self-start rounded-[2rem] p-3 backdrop-blur-xl xl:block">
       <div className="px-3 py-3">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400">
+        <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--text-muted)]">
           Study map
         </p>
-        <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
+        <div className="mt-3 h-px overflow-hidden rounded-full bg-[var(--border-card)]">
           <div
-            className="h-full rounded-full bg-amber-500 transition-all"
+            className="h-full rounded-full bg-[var(--accent)] transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <p className="mt-2 text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+        <p className="mt-3 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-[var(--text-muted)]">
           {progress}% reviewed
         </p>
       </div>
@@ -65,7 +65,7 @@ export function SectionNav({
               className={cn(
                 "grid grid-cols-[auto_1fr] items-center gap-2 rounded-2xl px-2 py-1.5",
                 active === section.id &&
-                  "bg-amber-500/12 text-zinc-950 dark:text-zinc-50",
+                  "bg-[rgba(196,107,40,0.12)] text-[var(--text-primary)]",
               )}
               key={section.id}
             >
@@ -74,8 +74,8 @@ export function SectionNav({
                 className={cn(
                   "grid h-5 w-5 place-items-center rounded-md border text-[0.65rem] transition active:scale-[0.9]",
                   checked
-                    ? "border-amber-500 bg-amber-500 text-zinc-950"
-                    : "border-zinc-300 text-transparent dark:border-zinc-700",
+                    ? "border-[var(--accent)] bg-[var(--accent)] text-[#130f0a]"
+                    : "border-[var(--border-card)] text-transparent",
                 )}
                 type="button"
                 onClick={() => toggleSection(section.id)}
@@ -83,7 +83,7 @@ export function SectionNav({
                 <Check aria-hidden="true" size={12} strokeWidth={2.2} />
               </button>
               <a
-                className="truncate rounded-xl px-2 py-2 text-sm font-semibold text-zinc-500 transition hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50"
+                className="truncate rounded-xl px-2 py-2 text-sm font-semibold text-[var(--text-muted)] transition hover:text-[var(--text-primary)]"
                 href={`#${section.id}`}
               >
                 {section.label}

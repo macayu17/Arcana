@@ -36,16 +36,16 @@ export function SectionNotes({
   const value = notes[noteKey] ?? "";
 
   return (
-    <div className="no-print mt-8 rounded-[1.75rem] border border-dashed border-zinc-300/80 bg-zinc-50/70 p-4 dark:border-zinc-700 dark:bg-zinc-950/70">
+    <div className="no-print mt-8 rounded-[1.75rem] border border-dashed border-[rgba(222,204,171,0.24)] bg-[rgba(14,13,10,0.54)] p-4">
       <label
-        className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400"
+        className="flex items-center gap-2 font-mono text-[0.68rem] font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]"
         htmlFor={`notes-${sectionId}`}
       >
         <StickyNote aria-hidden="true" size={15} />
         Notes
       </label>
       <textarea
-        className="mt-3 min-h-24 w-full resize-y rounded-[1.25rem] border border-zinc-200 bg-white px-4 py-3 text-sm leading-6 text-zinc-700 outline-none transition placeholder:text-zinc-400 focus:border-amber-500/60 focus:ring-4 focus:ring-amber-500/10 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-200"
+        className="mt-3 min-h-24 w-full resize-y rounded-[1.25rem] border border-[var(--border-card)] bg-[var(--bg-card)] px-4 py-3 text-sm leading-6 text-[var(--text-secondary)] outline-none transition placeholder:text-[var(--text-muted)] focus:border-[rgba(196,107,40,0.6)] focus:ring-4 focus:ring-[rgba(196,107,40,0.12)]"
         id={`notes-${sectionId}`}
         placeholder={`Add ${title.toLowerCase()} notes here`}
         value={value}

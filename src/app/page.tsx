@@ -4,112 +4,174 @@ import { StatsCounter } from "@/components/study/stats-counter";
 import { ButtonLink } from "@/components/ui/button";
 import { concepts } from "@/data/concepts";
 import { projects } from "@/data/projects";
-import { unique } from "@/lib/utils";
+import { formatCategory, unique } from "@/lib/utils";
 
 const techCount = unique(
   projects.flatMap((project) => project.techStack.map((tech) => tech.name)),
 ).length;
 
-const bentoAreas: Record<string, string> = {
-  sentinel: "lg:[grid-area:sentinel]",
-  engram: "lg:[grid-area:engram]",
-  parkinsons: "lg:[grid-area:parkinsons]",
-  occasio: "lg:[grid-area:occasio]",
-  equityflow: "lg:[grid-area:equityflow]",
-  gridpulse: "lg:[grid-area:gridpulse]",
-};
+const domains = Array.from(
+  projects.reduce((counts, project) => {
+    counts.set(project.domain, (counts.get(project.domain) ?? 0) + 1);
+    return counts;
+  }, new Map<string, number>()),
+).slice(0, 8);
+
+const technologies = Array.from(
+  projects
+    .flatMap((project) => project.techStack.map((tech) => tech.name))
+    .reduce((counts, tech) => {
+      counts.set(tech, (counts.get(tech) ?? 0) + 1);
+      return counts;
+    }, new Map<string, number>()),
+)
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 8);
+
+const ledgerColumns = [
+  {
+    title: "By project",
+    items: projects.map((project) => [project.name, project.concepts.length] as const),
+  },
+  {
+    title: "By domain",
+    items: domains,
+  },
+  {
+    title: "By technology",
+    items: technologies,
+  },
+] as const;
 
 export default function Home() {
   return (
-    <div>
-      <section className="relative min-h-[100dvh] overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute left-[8vw] top-28 h-72 w-72 rounded-full border border-amber-500/20" />
-          <div className="absolute right-[12vw] top-40 h-96 w-96 rounded-full border border-zinc-300/40 dark:border-zinc-700/50" />
-          <div className="absolute bottom-20 left-1/2 h-px w-[80vw] -translate-x-1/2 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+    <div className="overflow-hidden">
+      <section className="relative min-h-[100dvh] px-4 pt-16 md:px-6">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="arcana-watermark font-editorial absolute left-1/2 top-20 -translate-x-1/2 text-[31rem] font-semibold leading-none tracking-tighter">
+            A
+          </div>
+          <div className="absolute left-1/2 top-44 h-[28rem] w-[28rem] -translate-x-1/2 rounded-full border border-[rgba(247,240,228,0.055)]" />
+          <div className="absolute left-[7vw] top-[42vh] h-64 w-64 rotate-45 border border-[rgba(196,107,40,0.12)]" />
+          <div className="absolute right-[8vw] top-[30vh] h-80 w-80 rotate-12 border border-[rgba(247,240,228,0.055)]" />
         </div>
 
-        <div className="relative mx-auto grid min-h-[calc(100dvh-4.5rem)] max-w-[1400px] items-center gap-12 px-4 py-20 md:px-6 lg:grid-cols-[0.95fr_1.05fr]">
-          <div className="max-w-4xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-600 dark:text-amber-300">
-              Ayush interview study system
-            </p>
-            <h1 className="mt-6 max-w-5xl text-5xl font-semibold tracking-tighter text-zinc-950 dark:text-zinc-50 md:text-7xl">
-              Deep dive into my projects.
-            </h1>
-            <p className="mt-6 max-w-[65ch] text-lg leading-8 text-zinc-600 dark:text-zinc-300">
-              Arcana turns six software projects into an interview-ready study
-              workspace: architecture diagrams, concept explainers, code
-              highlights, Q&A, flashcards, and progress tracking.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <ButtonLink
-                href="#project-grid"
-                icon={<Layers aria-hidden="true" size={17} />}
-              >
-                Explore projects
-              </ButtonLink>
-              <ButtonLink
-                href="/study"
-                variant="secondary"
-                icon={<BookOpen aria-hidden="true" size={17} />}
-              >
-                Start studying
-              </ButtonLink>
-            </div>
+        <div className="relative mx-auto flex min-h-[calc(100dvh-5rem)] max-w-[1280px] flex-col items-center justify-center py-24 text-center">
+          <div className="font-mono text-[0.68rem] uppercase tracking-[0.28em] text-[var(--text-muted)]">
+            The interview project catalog · Vol. 01
           </div>
-
-          <div className="grid gap-4 rounded-[2.5rem] border border-zinc-200/70 bg-white/70 p-4 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] backdrop-blur-xl dark:border-zinc-800 dark:bg-zinc-900/55">
-            <div className="grid grid-cols-[1fr_auto] items-center gap-4 rounded-[2rem] bg-zinc-950 p-6 text-zinc-50 dark:bg-zinc-50 dark:text-zinc-950">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-300 dark:text-amber-700">
-                  Current scope
-                </p>
-                <p className="mt-3 text-3xl font-semibold tracking-tighter">
-                  {projects.length} projects, {concepts.length} concepts
-                </p>
-              </div>
-              <ArrowRight aria-hidden="true" className="text-amber-400" size={24} />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <StatsCounter label="Projects" value={projects.length} />
-              <StatsCounter label="Technologies" value={techCount} />
-            </div>
+          <h1 className="font-editorial mt-7 max-w-5xl text-[3.5rem] font-medium leading-[0.88] tracking-[-0.055em] text-[var(--text-primary)] md:text-[6.8rem] lg:text-[8.4rem]">
+            Every major
+            <span className="block">
+              project <span className="italic text-[var(--accent)]">decoded.</span>
+            </span>
+            Interview-ready.
+          </h1>
+          <p className="mt-8 max-w-2xl text-lg leading-8 text-[var(--text-secondary)]">
+            Arcana turns six software projects into a browsable study archive
+            with architecture diagrams, concept explainers, code highlights,
+            interview Q&A, flashcards, notes, and progress tracking.
+          </p>
+          <div className="mt-7 inline-flex flex-wrap items-center justify-center gap-3 rounded-full border border-[var(--border-card)] bg-[rgba(21,19,15,0.72)] px-5 py-2 font-mono text-[0.66rem] uppercase tracking-[0.22em] text-[var(--text-secondary)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
+            <span>{projects.length} projects</span>
+            <span className="text-[var(--text-muted)]">·</span>
+            <span>{concepts.length} concepts</span>
+            <span className="text-[var(--text-muted)]">·</span>
+            <span>{techCount} technologies</span>
+          </div>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <ButtonLink
+              href="#project-ledger"
+              icon={<Layers aria-hidden="true" size={17} />}
+            >
+              Browse ledger
+            </ButtonLink>
+            <ButtonLink
+              href="/study"
+              variant="secondary"
+              icon={<BookOpen aria-hidden="true" size={17} />}
+            >
+              Start studying
+            </ButtonLink>
           </div>
         </div>
       </section>
 
       <section
-        className="mx-auto max-w-[1400px] px-4 py-24 md:px-6 md:py-36"
-        id="project-grid"
+        className="mx-auto max-w-[1280px] px-4 py-24 md:px-6 md:py-32"
+        id="project-ledger"
       >
-        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+        <div className="mb-8 flex items-end justify-between gap-4">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-600 dark:text-amber-300">
-              Project atlas
+            <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
+              § I - The Ledger
             </p>
-            <h2 className="mt-4 text-4xl font-semibold tracking-tighter text-zinc-950 dark:text-zinc-50 md:text-6xl">
-              Built for fast recall and credible depth.
+            <h2 className="font-editorial mt-3 text-4xl font-medium tracking-tight text-[var(--text-primary)] md:text-5xl">
+              Browse the study catalog
             </h2>
           </div>
-          <p className="max-w-[68ch] text-base leading-8 text-zinc-600 dark:text-zinc-300">
-            Each card opens a full project study page with architecture,
-            workflow, API and data modeling notes, implementation highlights,
-            trade-offs, and self-testing material.
-          </p>
+          <ButtonLink href="/projects" variant="ghost" icon={<ArrowRight aria-hidden="true" size={15} />}>
+            View all
+          </ButtonLink>
         </div>
 
-        <div
-          className="arcana-bento-grid mt-12 grid auto-rows-[18rem] gap-5 lg:grid-cols-[1.1fr_0.85fr_0.95fr]"
-        >
+        <div className="grid gap-6 lg:grid-cols-3">
+          {ledgerColumns.map((column) => (
+            <div
+              className="arcana-paper-panel overflow-hidden rounded-[2rem]"
+              key={column.title}
+            >
+              <div className="flex items-center justify-between border-b border-[var(--border-card)] px-5 py-4 font-mono text-[0.68rem] uppercase tracking-[0.22em] text-[var(--text-muted)]">
+                <span>{column.title}</span>
+                <span className="text-[var(--accent)]">All</span>
+              </div>
+              <div className="divide-y divide-[var(--border-card)]">
+                {column.items.map(([label, count]) => (
+                  <div
+                    className="grid grid-cols-[1fr_auto] gap-4 px-5 py-4 font-mono text-[0.72rem] uppercase tracking-[0.18em] text-[var(--text-secondary)] transition hover:bg-[rgba(247,240,228,0.035)]"
+                    key={label}
+                  >
+                    <span>{formatCategory(label)}</span>
+                    <span className="text-[var(--text-muted)]">[{count}]</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section
+        className="mx-auto max-w-[1280px] px-4 py-24 md:px-6 md:py-32"
+        id="project-grid"
+      >
+        <div className="mb-8 flex items-end justify-between gap-4">
+          <div>
+            <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
+              § II - Project dossiers
+            </p>
+            <h2 className="font-editorial mt-3 text-4xl font-medium tracking-tight text-[var(--text-primary)] md:text-5xl">
+              Most useful systems to explain
+            </h2>
+          </div>
+          <ButtonLink href="/study" variant="ghost" icon={<ArrowRight aria-hidden="true" size={15} />}>
+            Study
+          </ButtonLink>
+        </div>
+
+        <div className="grid gap-5 lg:grid-cols-2">
           {projects.map((project) => (
             <ProjectCard
-              className={bentoAreas[project.slug]}
               featured={project.slug === "sentinel"}
               key={project.slug}
               project={project}
             />
           ))}
+        </div>
+
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          <StatsCounter label="Projects" value={projects.length} />
+          <StatsCounter label="Technologies" value={techCount} />
         </div>
       </section>
     </div>

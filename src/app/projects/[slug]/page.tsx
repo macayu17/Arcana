@@ -76,21 +76,29 @@ export default async function ProjectPage({
   );
 
   return (
-    <div className="mx-auto grid max-w-[1400px] gap-8 px-4 py-10 md:px-6 xl:grid-cols-[17rem_1fr]">
+    <div className="mx-auto grid max-w-[1280px] gap-8 px-4 py-10 md:px-6 xl:grid-cols-[15rem_1fr]">
       <SectionNav projectSlug={project.slug} sections={sections} />
 
       <article>
-        <header className="rounded-[2.5rem] border border-zinc-200/80 bg-white p-7 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] dark:border-zinc-800 dark:bg-zinc-900 md:p-10">
-          <div className="flex flex-wrap items-center gap-3">
-            <Badge className={project.domainColor}>{project.domain}</Badge>
-            <Badge>{project.status}</Badge>
+        <header className="arcana-paper-panel relative overflow-hidden rounded-[2rem] p-7 md:p-10">
+          <div className="arcana-watermark font-editorial pointer-events-none absolute -right-10 -top-20 text-[17rem] font-semibold leading-none">
+            {project.name.slice(0, 1)}
           </div>
-          <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="flex flex-wrap items-center gap-3">
+            <Badge>{project.domain}</Badge>
+            <Badge className="border-[var(--border-card)] bg-transparent text-[var(--text-muted)]">
+              {project.status}
+            </Badge>
+          </div>
+          <div className="relative mt-8 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
             <div>
-              <h1 className="max-w-5xl text-5xl font-semibold tracking-tighter text-zinc-950 dark:text-zinc-50 md:text-7xl">
+              <p className="font-mono text-[0.68rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
+                Project dossier
+              </p>
+              <h1 className="font-editorial mt-4 max-w-5xl text-6xl font-medium leading-[0.9] tracking-[-0.05em] text-[var(--text-primary)] md:text-8xl">
                 {project.name}
               </h1>
-              <p className="mt-5 max-w-[72ch] text-lg leading-8 text-zinc-600 dark:text-zinc-300">
+              <p className="mt-6 max-w-[72ch] text-lg leading-8 text-[var(--text-secondary)]">
                 {project.tagline}
               </p>
             </div>
@@ -117,11 +125,11 @@ export default async function ProjectPage({
 
         <ProjectSection eyebrow="What it solves" id="overview" title="Overview">
           <div className="grid gap-6 lg:grid-cols-[1fr_0.85fr]">
-            <p className="max-w-[76ch] text-lg leading-8 text-zinc-600 dark:text-zinc-300">
+            <p className="max-w-[76ch] text-lg leading-8 text-[var(--text-secondary)]">
               {project.description}
             </p>
             <Card className="grid gap-4 rounded-[2rem]">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-400">
+              <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--text-muted)]">
                 Target audience
               </p>
               <div className="flex flex-wrap gap-2">
@@ -137,17 +145,17 @@ export default async function ProjectPage({
 
         <ProjectSection eyebrow="System design" id="architecture" title="Architecture">
           <div className="grid gap-6">
-            <p className="max-w-[76ch] text-base leading-8 text-zinc-600 dark:text-zinc-300">
+            <p className="max-w-[76ch] text-base leading-8 text-[var(--text-secondary)]">
               {project.architecture.overview}
             </p>
             <ArchitectureDiagram chart={project.architecture.diagram} title="Architecture diagram" />
             <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
               {project.architecture.layers.map((layer) => (
                 <Card className="rounded-[2rem]" key={layer.name}>
-                  <p className="text-xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+                  <p className="font-editorial text-2xl font-medium tracking-tight text-[var(--text-primary)]">
                     {layer.name}
                   </p>
-                  <p className="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                  <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">
                     {layer.description}
                   </p>
                   <div className="mt-5 flex flex-wrap gap-2">
@@ -168,7 +176,7 @@ export default async function ProjectPage({
             {project.techStack.map((tech) => (
               <Card className="rounded-[2rem]" key={`${tech.category}-${tech.name}`}>
                 <TechStackBadge category={tech.category} name={tech.name} />
-                <p className="mt-4 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                <p className="mt-4 text-sm leading-7 text-[var(--text-secondary)]">
                   {tech.role}
                 </p>
               </Card>
@@ -178,27 +186,27 @@ export default async function ProjectPage({
 
         <ProjectSection eyebrow="Operational flow" id="how-it-works" title="How it works">
           <div className="grid gap-8">
-            <p className="max-w-[76ch] text-base leading-8 text-zinc-600 dark:text-zinc-300">
+            <p className="max-w-[76ch] text-base leading-8 text-[var(--text-secondary)]">
               {project.howItWorks.summary}
             </p>
             <div className="grid gap-4">
               {project.howItWorks.steps.map((step) => (
                 <div
-                  className="grid gap-5 rounded-[2rem] border border-zinc-200/80 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-950 md:grid-cols-[4rem_1fr]"
+                  className="arcana-paper-panel grid gap-5 rounded-[1.75rem] p-5 md:grid-cols-[4rem_1fr]"
                   key={step.step}
                 >
-                  <span className="grid h-12 w-12 place-items-center rounded-2xl bg-amber-500 text-sm font-bold tabular-nums text-zinc-950">
+                  <span className="grid h-12 w-12 place-items-center rounded-2xl bg-[var(--accent)] font-mono text-sm font-semibold tabular-nums text-[#130f0a]">
                     {step.step}
                   </span>
                   <div>
-                    <p className="text-lg font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+                    <p className="text-lg font-semibold tracking-tight text-[var(--text-primary)]">
                       {step.title}
                     </p>
-                    <p className="mt-2 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                    <p className="mt-2 text-sm leading-7 text-[var(--text-secondary)]">
                       {step.description}
                     </p>
                     {step.details ? (
-                      <p className="mt-3 border-l border-amber-500/50 pl-4 text-sm leading-7 text-zinc-500 dark:text-zinc-400">
+                      <p className="mt-3 border-l border-[rgba(196,107,40,0.5)] pl-4 text-sm leading-7 text-[var(--text-muted)]">
                         {step.details}
                       </p>
                     ) : null}
@@ -237,7 +245,7 @@ export default async function ProjectPage({
         <ProjectSection eyebrow="Contracts" id="api-design" title="API design">
           {project.apiDesign ? (
             <div className="grid gap-4">
-              <p className="text-sm font-semibold text-zinc-500 dark:text-zinc-400">
+              <p className="text-sm font-semibold text-[var(--text-muted)]">
                 Base URL: <span className="font-mono">{project.apiDesign.baseUrl}</span>
               </p>
               {project.apiDesign.endpoints.map((endpoint) => (
@@ -246,21 +254,21 @@ export default async function ProjectPage({
                     <Badge className="border-amber-500/30 bg-amber-500/10 text-amber-700 dark:text-amber-300">
                       {endpoint.method}
                     </Badge>
-                    <code className="rounded-full bg-zinc-100 px-3 py-1 text-sm font-semibold text-zinc-700 dark:bg-zinc-950 dark:text-zinc-200">
+                    <code className="rounded-full border border-[var(--border-card)] bg-[rgba(14,13,10,0.6)] px-3 py-1 text-sm font-semibold text-[var(--text-secondary)]">
                       {endpoint.path}
                     </code>
                   </div>
-                  <p className="mt-4 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                  <p className="mt-4 text-sm leading-7 text-[var(--text-secondary)]">
                     {endpoint.description}
                   </p>
                   <div className="mt-5 grid gap-3 lg:grid-cols-[1fr_1fr]">
                     {endpoint.requestBody ? (
-                      <pre className="overflow-x-auto rounded-2xl bg-zinc-950 p-4 text-xs text-zinc-100">
+                      <pre className="overflow-x-auto rounded-2xl bg-[#0d0c09] p-4 text-xs text-[var(--text-primary)]">
                         {endpoint.requestBody}
                       </pre>
                     ) : null}
                     {endpoint.responseBody ? (
-                      <pre className="overflow-x-auto rounded-2xl bg-zinc-950 p-4 text-xs text-zinc-100">
+                      <pre className="overflow-x-auto rounded-2xl bg-[#0d0c09] p-4 text-xs text-[var(--text-primary)]">
                         {endpoint.responseBody}
                       </pre>
                     ) : null}
@@ -291,10 +299,10 @@ export default async function ProjectPage({
               <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
                 {project.databaseDesign.tables.map((table) => (
                   <Card className="rounded-[2rem]" key={table.name}>
-                    <p className="text-lg font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+                    <p className="font-editorial text-2xl font-medium tracking-tight text-[var(--text-primary)]">
                       {table.name}
                     </p>
-                    <p className="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                    <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">
                       {table.description}
                     </p>
                     <div className="mt-4 flex flex-wrap gap-2">
@@ -317,13 +325,13 @@ export default async function ProjectPage({
           <div className="grid gap-4 lg:grid-cols-[1fr_1fr]">
             {project.tradeoffs.map((tradeoff) => (
               <Card className="rounded-[2rem]" key={tradeoff.decision}>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-400">
+                <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--text-muted)]">
                   {tradeoff.decision}
                 </p>
-                <p className="mt-4 text-xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+                <p className="font-editorial mt-4 text-2xl font-medium tracking-tight text-[var(--text-primary)]">
                   {tradeoff.chose} over {tradeoff.over}
                 </p>
-                <p className="mt-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                <p className="mt-3 text-sm leading-7 text-[var(--text-secondary)]">
                   {tradeoff.reasoning}
                 </p>
               </Card>
@@ -339,22 +347,22 @@ export default async function ProjectPage({
                 key={challenge.problem}
               >
                 <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-400">
+                  <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.22em] text-[var(--text-muted)]">
                     Problem
                   </p>
-                  <p className="mt-3 text-base font-semibold leading-7 text-zinc-950 dark:text-zinc-50">
+                  <p className="mt-3 text-base font-semibold leading-7 text-[var(--text-primary)]">
                     {challenge.problem}
                   </p>
                 </div>
-                <div className="space-y-4 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+                <div className="space-y-4 text-sm leading-7 text-[var(--text-secondary)]">
                   <p>
-                    <span className="font-semibold text-zinc-950 dark:text-zinc-50">
+                    <span className="font-semibold text-[var(--text-primary)]">
                       Solution:
                     </span>{" "}
                     {challenge.solution}
                   </p>
                   <p>
-                    <span className="font-semibold text-zinc-950 dark:text-zinc-50">
+                    <span className="font-semibold text-[var(--text-primary)]">
                       Lesson:
                     </span>{" "}
                     {challenge.lesson}
@@ -369,12 +377,12 @@ export default async function ProjectPage({
           <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
             <Card className="rounded-[2rem]">
               <div className="mb-5 flex items-center gap-3">
-                <Terminal aria-hidden="true" className="text-amber-500" size={18} />
-                <p className="text-lg font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+                <Terminal aria-hidden="true" className="text-[var(--accent)]" size={18} />
+                <p className="font-editorial text-2xl font-medium tracking-tight text-[var(--text-primary)]">
                   Requirements
                 </p>
               </div>
-              <ul className="space-y-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+              <ul className="space-y-3 text-sm leading-7 text-[var(--text-secondary)]">
                 {project.requirements.map((requirement) => (
                   <li key={requirement}>{requirement}</li>
                 ))}
@@ -382,12 +390,12 @@ export default async function ProjectPage({
             </Card>
             <Card className="rounded-[2rem]">
               <div className="mb-5 flex items-center gap-3">
-                <Server aria-hidden="true" className="text-amber-500" size={18} />
-                <p className="text-lg font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+                <Server aria-hidden="true" className="text-[var(--accent)]" size={18} />
+                <p className="font-editorial text-2xl font-medium tracking-tight text-[var(--text-primary)]">
                   Future improvements
                 </p>
               </div>
-              <ul className="space-y-3 text-sm leading-7 text-zinc-600 dark:text-zinc-300">
+              <ul className="space-y-3 text-sm leading-7 text-[var(--text-secondary)]">
                 {project.futureImprovements.map((improvement) => (
                   <li key={improvement}>{improvement}</li>
                 ))}

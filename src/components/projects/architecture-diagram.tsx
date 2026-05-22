@@ -50,12 +50,14 @@ export function ArchitectureDiagram({
         mermaid.initialize({
           startOnLoad: false,
           securityLevel: "strict",
-          theme: theme === "dark" ? "dark" : "base",
+          theme: "dark",
           themeVariables: {
-            primaryColor: theme === "dark" ? "#18181b" : "#ffffff",
-            primaryTextColor: theme === "dark" ? "#fafafa" : "#18181b",
-            primaryBorderColor: theme === "dark" ? "#3f3f46" : "#e4e4e7",
-            lineColor: "#f59e0b",
+            primaryColor: "#15130f",
+            primaryTextColor: "#f7f0e4",
+            primaryBorderColor: "#514331",
+            lineColor: "#c46b28",
+            secondaryColor: "#1b1812",
+            tertiaryColor: "#0e0d0a",
             fontFamily: "var(--font-geist-sans)",
           },
         });
@@ -84,18 +86,18 @@ export function ArchitectureDiagram({
 
   return (
     <Card className="overflow-hidden p-0" ref={setContainer}>
-      <div className="border-b border-zinc-200/70 px-6 py-4 dark:border-zinc-800">
-        <p className="text-sm font-semibold text-zinc-950 dark:text-zinc-50">
+      <div className="border-b border-[var(--border-card)] px-6 py-4">
+        <p className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">
           {title}
         </p>
       </div>
       <div className="min-h-96 overflow-x-auto p-6">
         {!inView ? (
-          <div className="grid min-h-80 place-items-center rounded-[1.5rem] border border-dashed border-zinc-200 text-sm text-zinc-400 dark:border-zinc-800">
+          <div className="grid min-h-80 place-items-center rounded-[1.5rem] border border-dashed border-[var(--border-card)] text-sm text-[var(--text-muted)]">
             Diagram loads when visible
           </div>
         ) : error ? (
-          <pre className="whitespace-pre-wrap text-sm text-rose-600 dark:text-rose-300">
+          <pre className="whitespace-pre-wrap text-sm text-[#f0a38d]">
             {error}
           </pre>
         ) : svg ? (
@@ -104,7 +106,7 @@ export function ArchitectureDiagram({
             dangerouslySetInnerHTML={{ __html: svg }}
           />
         ) : (
-          <div className="grid min-h-80 place-items-center rounded-[1.5rem] border border-dashed border-zinc-200 text-sm text-zinc-400 dark:border-zinc-800">
+          <div className="grid min-h-80 place-items-center rounded-[1.5rem] border border-dashed border-[var(--border-card)] text-sm text-[var(--text-muted)]">
             Rendering diagram
           </div>
         )}

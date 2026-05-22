@@ -18,23 +18,23 @@ export function ProgressTracker() {
 
   return (
     <div className="grid gap-6">
-      <div className="rounded-[2rem] border border-zinc-200/80 bg-white p-6 dark:border-zinc-800 dark:bg-zinc-900">
+      <div className="arcana-paper-panel rounded-[2rem] p-6">
         <div className="grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-400">
+            <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">
               Overall progress
             </p>
-            <p className="mt-3 text-4xl font-semibold tracking-tighter text-zinc-950 dark:text-zinc-50">
+            <p className="font-editorial mt-3 text-4xl font-medium tracking-tight text-[var(--text-primary)]">
               {overall}%
             </p>
           </div>
-          <p className="text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="text-sm text-[var(--text-muted)]">
             {totalReviewed} of {totalSections} sections reviewed
           </p>
         </div>
-        <div className="mt-5 h-2 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
+        <div className="mt-5 h-1 overflow-hidden rounded-full bg-[var(--border-card)]">
           <div
-            className="h-full rounded-full bg-amber-500 transition-all"
+            className="h-full rounded-full bg-[var(--accent)] transition-all"
             style={{ width: `${overall}%` }}
           />
         </div>
@@ -50,13 +50,13 @@ export function ProgressTracker() {
 
           return (
             <Link
-              className="grid gap-5 rounded-[2rem] border border-zinc-200/80 bg-white p-5 transition hover:border-amber-500/30 active:scale-[0.99] dark:border-zinc-800 dark:bg-zinc-950 md:grid-cols-[auto_1fr_auto] md:items-center"
+              className="arcana-paper-panel grid gap-5 rounded-[2rem] p-5 transition hover:border-[rgba(196,107,40,0.45)] active:scale-[0.99] md:grid-cols-[auto_1fr_auto] md:items-center"
               href={`/projects/${project.slug}`}
               key={project.slug}
             >
               <svg className="h-20 w-20 -rotate-90" viewBox="0 0 80 80">
                 <circle
-                  className="stroke-zinc-100 dark:stroke-zinc-800"
+                  className="stroke-[rgba(247,240,228,0.08)]"
                   cx="40"
                   cy="40"
                   fill="none"
@@ -64,7 +64,7 @@ export function ProgressTracker() {
                   strokeWidth="8"
                 />
                 <circle
-                  className="stroke-amber-500"
+                  className="stroke-[var(--accent)]"
                   cx="40"
                   cy="40"
                   fill="none"
@@ -76,18 +76,18 @@ export function ProgressTracker() {
                 />
               </svg>
               <div>
-                <p className="text-lg font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+                <p className="font-editorial text-2xl font-medium tracking-tight text-[var(--text-primary)]">
                   {project.name}
                 </p>
-                <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+                <p className="mt-1 text-sm text-[var(--text-muted)]">
                   Last studied: {relativeTime(item?.lastStudied)}
                 </p>
               </div>
               <div className="text-left md:text-right">
-                <p className="text-2xl font-semibold tabular-nums text-zinc-950 dark:text-zinc-50">
+                <p className="font-mono text-2xl font-semibold tabular-nums text-[var(--text-primary)]">
                   {percent}%
                 </p>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400">
+                <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.18em] text-[var(--text-muted)]">
                   {reviewed}/{sectionCount}
                 </p>
               </div>

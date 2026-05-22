@@ -24,7 +24,7 @@ export function Accordion({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-[1.5rem] border border-zinc-200/80 bg-white dark:border-zinc-800 dark:bg-zinc-950",
+        "arcana-paper-panel overflow-hidden rounded-[1.5rem]",
         className,
       )}
     >
@@ -34,11 +34,11 @@ export function Accordion({
         onClick={() => setOpen((current) => !current)}
       >
         <span>
-          <span className="block text-base font-semibold text-zinc-950 dark:text-zinc-50">
+          <span className="block text-base font-semibold text-[var(--text-primary)]">
             {title}
           </span>
           {meta ? (
-            <span className="mt-1 block text-sm text-zinc-500 dark:text-zinc-400">
+            <span className="mt-1 block text-sm text-[var(--text-muted)]">
               {meta}
             </span>
           ) : null}
@@ -46,7 +46,7 @@ export function Accordion({
         <ChevronDown
           aria-hidden="true"
           className={cn(
-            "text-zinc-400 transition-transform",
+            "text-[var(--text-muted)] transition-transform",
             open && "rotate-180",
           )}
           size={18}
@@ -60,7 +60,7 @@ export function Accordion({
             exit={{ height: 0, opacity: 0 }}
             transition={{ type: "spring", stiffness: 100, damping: 20 }}
           >
-            <div className="border-t border-zinc-200/70 px-5 py-5 text-sm leading-7 text-zinc-600 dark:border-zinc-800 dark:text-zinc-300">
+            <div className="border-t border-[var(--border-card)] px-5 py-5 text-sm leading-7 text-[var(--text-secondary)]">
               {children}
             </div>
           </motion.div>

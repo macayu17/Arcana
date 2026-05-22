@@ -5,9 +5,8 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { Badge } from "@/components/ui/badge";
-import { ProjectIcon } from "@/components/projects/project-icon";
 import type { Project } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { cn, getInitials } from "@/lib/utils";
 
 export function ProjectCard({
   project,
@@ -26,55 +25,69 @@ export function ProjectCard({
     <motion.div
       className={cn("h-full", className)}
       style={style}
-      whileHover={{ y: -5, scale: 1.01 }}
+      whileHover={{ y: -4, scale: 1.005 }}
       whileTap={{ scale: 0.98 }}
     >
       <Link
         className={cn(
-          "group grid h-full min-h-64 overflow-hidden rounded-[2.5rem] border border-slate-200/60 bg-white p-7 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition duration-300 hover:border-amber-500/30 dark:border-zinc-700/50 dark:bg-zinc-900",
-          featured && "min-h-[30rem] p-8",
+          "group arcana-paper-panel grid h-full min-h-72 overflow-hidden rounded-[2rem] p-6 transition duration-300 hover:border-[rgba(196,107,40,0.48)]",
+          featured && "min-h-[24rem] md:min-h-[28rem] md:p-8",
         )}
         href={`/projects/${project.slug}`}
       >
-        <div className="flex items-start justify-between gap-5">
-          <span className="grid h-12 w-12 place-items-center rounded-2xl border border-zinc-200 bg-zinc-50 text-zinc-800 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100">
-            <ProjectIcon name={project.icon} />
+        <div className="flex items-start justify-between gap-5 font-mono">
+          <div className="flex items-center gap-3">
+            <span className="grid h-8 w-8 place-items-center rounded-md border border-[rgba(196,107,40,0.24)] bg-[rgba(196,107,40,0.1)] text-[0.66rem] font-semibold uppercase tracking-tight text-[#e7a56d]">
+              {getInitials(project.name)}
+            </span>
+            <span className="text-[0.72rem] uppercase tracking-[0.16em] text-[var(--text-secondary)]">
+              {project.domain}
+            </span>
+          </div>
+          <span className="text-[0.7rem] uppercase tracking-[0.18em] text-[var(--text-muted)]">
+            {project.status}
           </span>
-          <ArrowUpRight
-            aria-hidden="true"
-            className="text-zinc-400 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-amber-500"
-            size={18}
-          />
         </div>
 
-        <div className="mt-auto pt-10">
-          <Badge className={project.domainColor}>{project.domain}</Badge>
+        <div className="mt-10">
+          <Badge className="border-[var(--border-card)] bg-transparent text-[var(--text-muted)]">
+            Dossier
+          </Badge>
           <h3
             className={cn(
-              "mt-5 text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50",
-              featured && "text-4xl md:text-5xl",
+              "font-editorial mt-5 text-3xl font-medium leading-[1.02] tracking-tight text-[var(--text-primary)]",
+              featured && "max-w-[13ch] text-5xl md:text-6xl",
             )}
           >
             {project.name}
           </h3>
           <p
             className={cn(
-              "mt-3 text-sm leading-6 text-zinc-500 dark:text-zinc-400",
-              featured && "max-w-[58ch] text-base",
+              "mt-4 max-w-[56ch] text-sm italic leading-6 text-[var(--text-secondary)]",
+              featured && "text-base leading-7",
             )}
           >
             {project.tagline}
           </p>
-          <div className="mt-6 flex flex-wrap gap-2">
+        </div>
+
+        <div className="mt-auto pt-10">
+          <div className="mb-5 h-px w-full bg-[var(--border-card)]" />
+          <div className="flex flex-wrap gap-2">
             {visibleTech.map((tech) => (
               <span
-                className="rounded-full border border-zinc-200/80 px-3 py-1 text-xs font-semibold text-zinc-500 dark:border-zinc-800 dark:text-zinc-400"
+                className="rounded-md border border-[rgba(196,107,40,0.22)] bg-[rgba(196,107,40,0.09)] px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-[0.18em] text-[#e7a56d]"
                 key={tech.name}
               >
                 {tech.name}
               </span>
             ))}
           </div>
+          <ArrowUpRight
+            aria-hidden="true"
+            className="mt-6 text-[var(--text-muted)] transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-[var(--accent)]"
+            size={18}
+          />
         </div>
       </Link>
     </motion.div>

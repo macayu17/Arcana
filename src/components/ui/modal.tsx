@@ -21,7 +21,7 @@ export function Modal({
     <AnimatePresence>
       {open ? (
         <motion.div
-          className="fixed inset-0 z-40 grid place-items-start bg-zinc-950/40 px-4 py-24 backdrop-blur-sm dark:bg-zinc-950/70"
+          className="fixed inset-0 z-40 grid place-items-start bg-[#080704]/75 px-4 py-24 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -29,7 +29,7 @@ export function Modal({
         >
           <motion.div
             className={cn(
-              "mx-auto w-full max-w-3xl rounded-[2rem] border border-white/20 bg-white/95 p-3 shadow-[0_30px_80px_-30px_rgba(24,24,27,0.45)] dark:border-zinc-700/70 dark:bg-zinc-950/95",
+              "arcana-paper-panel mx-auto w-full max-w-3xl rounded-[2rem] p-3",
               className,
             )}
             initial={{ y: -18, scale: 0.98, opacity: 0 }}

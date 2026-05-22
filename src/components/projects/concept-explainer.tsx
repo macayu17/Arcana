@@ -30,14 +30,14 @@ export function ConceptExplainer({ project }: { project: Project }) {
             <div className="space-y-4">
               <p>{concept.explanation}</p>
               <p>
-                <span className="font-semibold text-zinc-950 dark:text-zinc-50">
+                <span className="font-semibold text-[var(--text-primary)]">
                   In {project.name}:
                 </span>{" "}
                 {concept.relevance}
               </p>
             </div>
-            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-950">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400">
+            <div className="rounded-2xl border border-[var(--border-card)] bg-[rgba(14,13,10,0.45)] p-4">
+              <p className="mb-3 font-mono text-[0.68rem] font-medium uppercase tracking-[0.2em] text-[var(--text-muted)]">
                 Confidence
               </p>
               <ConfidenceRating

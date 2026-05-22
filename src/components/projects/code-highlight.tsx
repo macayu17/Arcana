@@ -68,17 +68,17 @@ export function CodeHighlight({
 
   return (
     <Card className="overflow-hidden p-0" ref={setContainer}>
-      <div className="grid gap-2 border-b border-zinc-200/70 px-6 py-5 dark:border-zinc-800">
-        <p className="text-lg font-semibold tracking-tight text-zinc-950 dark:text-zinc-50">
+      <div className="grid gap-2 border-b border-[var(--border-card)] px-6 py-5">
+        <p className="font-editorial text-2xl font-medium tracking-tight text-[var(--text-primary)]">
           {title}
         </p>
-        <p className="max-w-[70ch] text-sm leading-6 text-zinc-500 dark:text-zinc-400">
+        <p className="max-w-[70ch] text-sm leading-6 text-[var(--text-muted)]">
           {description}
         </p>
       </div>
-      <div className="overflow-x-auto bg-zinc-950">
+      <div className="overflow-x-auto bg-[#0d0c09]">
         {!inView ? (
-          <div className="grid h-64 place-items-center bg-zinc-950 text-sm text-zinc-500">
+          <div className="grid h-64 place-items-center bg-[#0d0c09] text-sm text-[var(--text-muted)]">
             Code highlight loads when visible
           </div>
         ) : html ? (
@@ -87,14 +87,14 @@ export function CodeHighlight({
             dangerouslySetInnerHTML={{ __html: html }}
           />
         ) : (
-          <div className="h-64 animate-pulse bg-zinc-900" />
+          <div className="h-64 animate-pulse bg-[rgba(247,240,228,0.035)]" />
         )}
       </div>
       {annotations?.length ? (
-        <div className="grid gap-3 border-t border-zinc-200/70 px-6 py-5 dark:border-zinc-800">
+        <div className="grid gap-3 border-t border-[var(--border-card)] px-6 py-5">
           {annotations.map((annotation) => (
             <p
-              className="border-l border-amber-500/50 pl-4 text-sm leading-6 text-zinc-600 dark:text-zinc-300"
+              className="border-l border-[rgba(196,107,40,0.55)] pl-4 text-sm leading-6 text-[var(--text-secondary)]"
               key={annotation}
             >
               {annotation}

@@ -6,13 +6,13 @@ type ButtonVariant = "primary" | "secondary" | "ghost" | "quiet";
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "border border-amber-500/50 bg-amber-500 text-zinc-950 shadow-[0_20px_40px_-22px_rgba(245,158,11,0.65)] hover:bg-amber-400",
+    "border border-[rgba(196,107,40,0.55)] bg-[var(--accent)] text-[#130f0a] shadow-[0_20px_50px_-28px_rgba(196,107,40,0.75)] hover:bg-[#d17a35]",
   secondary:
-    "border border-zinc-300/70 bg-white text-zinc-950 shadow-[0_20px_40px_-20px_rgba(24,24,27,0.18)] hover:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 dark:hover:border-zinc-600",
+    "border border-[var(--border-card)] bg-[rgba(247,240,228,0.035)] text-[var(--text-primary)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] hover:border-[rgba(196,107,40,0.45)]",
   ghost:
-    "border border-transparent text-zinc-700 hover:bg-zinc-950/5 dark:text-zinc-300 dark:hover:bg-white/5",
+    "border border-transparent text-[var(--text-secondary)] hover:bg-[rgba(247,240,228,0.055)] hover:text-[var(--text-primary)]",
   quiet:
-    "border border-zinc-200/70 bg-zinc-50 text-zinc-700 hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-300",
+    "border border-[var(--border-card)] bg-[rgba(14,13,10,0.62)] text-[var(--text-secondary)] hover:border-[rgba(196,107,40,0.45)] hover:text-[var(--text-primary)]",
 };
 
 const base =

@@ -79,35 +79,35 @@ export function FlashcardDeck({ project }: { project: Project }) {
   if (complete) {
     return (
       <div className="mx-auto grid min-h-[70dvh] max-w-3xl place-items-center px-4 py-24">
-        <div className="w-full rounded-[2.5rem] border border-zinc-200 bg-white p-8 text-center shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] dark:border-zinc-800 dark:bg-zinc-900">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-400">
+        <div className="arcana-paper-panel w-full rounded-[2rem] p-8 text-center">
+          <p className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.22em] text-[var(--text-muted)]">
             Deck complete
           </p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-zinc-950 dark:text-zinc-50">
+          <h1 className="font-editorial mt-4 text-5xl font-medium tracking-tight text-[var(--text-primary)]">
             {project.name} review summary
           </h1>
           <div className="mt-8 grid grid-cols-3 gap-3 text-left">
             <div className="rounded-2xl bg-emerald-500/10 p-4">
-              <p className="text-2xl font-semibold text-emerald-700 dark:text-emerald-300">
+              <p className="font-mono text-2xl font-semibold text-emerald-300">
                 {results.know}
               </p>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+              <p className="font-mono text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[var(--text-muted)]">
                 Know
               </p>
             </div>
-            <div className="rounded-2xl bg-amber-500/10 p-4">
-              <p className="text-2xl font-semibold text-amber-700 dark:text-amber-300">
+            <div className="rounded-2xl bg-[rgba(196,107,40,0.1)] p-4">
+              <p className="font-mono text-2xl font-semibold text-[#e7a56d]">
                 {results.kinda}
               </p>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+              <p className="font-mono text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[var(--text-muted)]">
                 Kinda
               </p>
             </div>
             <div className="rounded-2xl bg-rose-500/10 p-4">
-              <p className="text-2xl font-semibold text-rose-700 dark:text-rose-300">
+              <p className="font-mono text-2xl font-semibold text-rose-300">
                 {results.dontKnow}
               </p>
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">
+              <p className="font-mono text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[var(--text-muted)]">
                 Review
               </p>
             </div>
@@ -136,10 +136,10 @@ export function FlashcardDeck({ project }: { project: Project }) {
     <div className="mx-auto max-w-[1100px] px-4 py-16 md:px-6 md:py-24">
       <div className="mb-8 grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-400">
-            Flashcards
+          <p className="font-mono text-[0.7rem] uppercase tracking-[0.24em] text-[var(--text-muted)]">
+            § VI - Flashcards
           </p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tighter text-zinc-950 dark:text-zinc-50 md:text-6xl">
+          <h1 className="font-editorial mt-3 text-5xl font-medium tracking-tight text-[var(--text-primary)] md:text-7xl">
             {project.name}
           </h1>
         </div>
@@ -157,16 +157,16 @@ export function FlashcardDeck({ project }: { project: Project }) {
         </Button>
       </div>
 
-      <div className="mb-8 h-2 overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
+      <div className="mb-8 h-px overflow-hidden rounded-full bg-[var(--border-card)]">
         <div
-          className="h-full rounded-full bg-amber-500 transition-all"
+          className="h-full rounded-full bg-[var(--accent)] transition-all"
           style={{ width: `${(answered / deck.length) * 100}%` }}
         />
       </div>
 
       <AnimatePresence mode="wait">
         <motion.button
-          className="grid min-h-[28rem] w-full place-items-center rounded-[2.5rem] border border-zinc-200 bg-white p-8 text-center shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] outline-none transition hover:border-amber-500/30 active:scale-[0.99] dark:border-zinc-800 dark:bg-zinc-900"
+          className="arcana-paper-panel grid min-h-[28rem] w-full place-items-center rounded-[2rem] p-8 text-center outline-none transition hover:border-[rgba(196,107,40,0.45)] active:scale-[0.99]"
           key={`${index}-${revealed}`}
           type="button"
           initial={{ rotateY: revealed ? -90 : 90, opacity: 0 }}
@@ -175,16 +175,16 @@ export function FlashcardDeck({ project }: { project: Project }) {
           onClick={() => setRevealed((current) => !current)}
         >
           <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-400">
+            <p className="font-mono text-[0.7rem] font-medium uppercase tracking-[0.22em] text-[var(--text-muted)]">
               Card {index + 1} of {deck.length}
             </p>
-            <p className="mt-8 max-w-3xl text-3xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-50 md:text-5xl">
+            <p className="font-editorial mt-8 max-w-3xl text-4xl font-medium tracking-tight text-[var(--text-primary)] md:text-6xl">
               {revealed ? card.back : card.front}
             </p>
-            <p className="mt-8 text-sm font-semibold text-zinc-400">
+            <p className="mt-8 text-sm font-semibold text-[var(--text-muted)]">
               Click to {revealed ? "hide answer" : "reveal answer"}
             </p>
-            <p className="mt-3 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-400">
+            <p className="mt-3 font-mono text-[0.66rem] font-medium uppercase tracking-[0.18em] text-[var(--text-muted)]">
               {formatReviewDueDate(currentReview?.dueAt)}
             </p>
           </div>

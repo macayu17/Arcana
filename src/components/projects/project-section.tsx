@@ -17,14 +17,14 @@ export function ProjectSection({
 }) {
   return (
     <section
-      className={cn("scroll-mt-28 border-t border-zinc-200/70 py-16 dark:border-zinc-800", className)}
+      className={cn("scroll-mt-28 border-t border-[var(--border-card)] py-16", className)}
       id={id}
     >
       <div className="mb-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-600 dark:text-amber-300">
+        <p className="font-mono text-[0.68rem] font-medium uppercase tracking-[0.24em] text-[var(--accent)]">
           {eyebrow}
         </p>
-        <h2 className="mt-3 text-3xl font-semibold tracking-tighter text-zinc-950 dark:text-zinc-50 md:text-5xl">
+        <h2 className="font-editorial mt-3 text-4xl font-medium tracking-tight text-[var(--text-primary)] md:text-5xl">
           {title}
         </h2>
       </div>

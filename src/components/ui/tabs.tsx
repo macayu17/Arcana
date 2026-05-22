@@ -18,7 +18,7 @@ export function Tabs<T extends string>({
   return (
     <div
       className={cn(
-        "inline-grid grid-flow-col gap-1 rounded-full border border-zinc-200/80 bg-white/80 p-1 dark:border-zinc-800 dark:bg-zinc-950/80",
+        "inline-grid grid-flow-col gap-1 rounded-full border border-[var(--border-card)] bg-[rgba(14,13,10,0.54)] p-1",
         className,
       )}
     >
@@ -26,15 +26,15 @@ export function Tabs<T extends string>({
         <button
           key={item.value}
           className={cn(
-            "relative rounded-full px-4 py-2 text-sm font-semibold text-zinc-500 transition active:scale-[0.98] dark:text-zinc-400",
-            value === item.value && "text-zinc-950 dark:text-zinc-50",
+            "relative rounded-full px-4 py-2 font-mono text-[0.68rem] font-medium uppercase tracking-[0.16em] text-[var(--text-muted)] transition active:scale-[0.98]",
+            value === item.value && "text-[var(--text-primary)]",
           )}
           type="button"
           onClick={() => onChange(item.value)}
         >
           {value === item.value ? (
             <motion.span
-              className="absolute inset-0 rounded-full bg-amber-500/15"
+              className="absolute inset-0 rounded-full bg-[rgba(196,107,40,0.16)]"
               layoutId="tab-active"
               transition={{ type: "spring", stiffness: 100, damping: 20 }}
             />
